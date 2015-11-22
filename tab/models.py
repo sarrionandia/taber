@@ -50,7 +50,7 @@ class Debate(models.Model):
     OO = models.ForeignKey(Team, related_name='OO')
     CG = models.ForeignKey(Team, related_name='CG')
     CO = models.ForeignKey(Team, related_name='CO')
-    Chair = models.ForeignKey(Judge)
+    chair = models.ForeignKey(Judge)
 
     def getPositions(self):
         return {
@@ -63,6 +63,7 @@ class Debate(models.Model):
     def clean(self):
         self.validate_team_unique()
         self.validate_venue_unique()
+        self.validate_chair_unique()
 
     def validate_venue_unique(self):
         if(Debate.objects.filter(round=self.round, venue=self.venue).count() >= 1):
@@ -78,3 +79,7 @@ class Debate(models.Model):
             if (debate != self):
                 if any(x in debate.getPositions().values() for x in self.getPositions().values()):
                     raise ValidationError("A team can't be in two debates in the same round")
+
+    def validate_chair_unique(self):
+        if(Debate.objects.filter(round=self.round, chair=self.chair).count() >= 1):
+            raise ValidationError("A chair judge can't be used for multiple debates in the same round")
