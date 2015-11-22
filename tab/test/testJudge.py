@@ -2,7 +2,7 @@ from tab.models import Institution, Judge
 from django.test import TestCase
 
 
-class TeamTestCase(TestCase):
+class JudgeTestCase(TestCase):
 
     def setUp(self):
         Institution.objects.create(name='University')
