@@ -71,7 +71,7 @@ class DebateTestCase(TestCase):
 
     def test_positions(self):
         debate = generate_objects.valid_debate()
-        positions = debate.getPositions()
+        positions = debate.positions()
         self.assertEqual(debate.OG, positions['OG'])
         self.assertEqual(debate.OO, positions['OO'])
         self.assertEqual(debate.CG, positions['CG'])
