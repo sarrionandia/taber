@@ -15,7 +15,7 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/taber$Test__tab_test_testSpeaker.coverage" NAME="Test: tab.test.testSpeaker Coverage Results" MODIFIED="1448209470734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/taber$Test__tab_test_testDebate.coverage" NAME="Test: tab.test.testDebate Coverage Results" MODIFIED="1448211518871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/taber$Test__tab_test_testDebate.coverage" NAME="Test: tab.test.testDebate Coverage Results" MODIFIED="1448211674947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/taber$Test__tab_test_test_institution.coverage" NAME="Test: tab.test.test-institution Coverage Results" MODIFIED="1448208478615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -27,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tab/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="81" selection-start-line="63" selection-start-column="81" selection-end-line="63" selection-end-column="81" />
+            <state vertical-scroll-proportion="0.8768267">
+              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -39,10 +39,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testDebate.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="testDebate.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tab/test/testDebate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9373695">
+            <state vertical-scroll-proportion="0.0">
               <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
@@ -100,9 +100,9 @@
         <option value="$PROJECT_DIR$/tab/test/testVenue.py" />
         <option value="$PROJECT_DIR$/tab/test/testTeam.py" />
         <option value="$PROJECT_DIR$/tab/test/testSpeaker.py" />
-        <option value="$PROJECT_DIR$/tab/models.py" />
         <option value="$PROJECT_DIR$/tab/test/generate_objects.py" />
         <option value="$PROJECT_DIR$/tab/test/testDebate.py" />
+        <option value="$PROJECT_DIR$/tab/models.py" />
       </list>
     </option>
   </component>
@@ -112,8 +112,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="224" />
-    <option name="y" value="99" />
+    <option name="x" value="266" />
+    <option name="y" value="173" />
     <option name="width" value="1087" />
     <option name="height" value="825" />
   </component>
@@ -545,9 +545,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test__tab_test_testDebate - 2015.11.22 at 16h 42m 45s.xml">
-      <configuration name="Test: tab.test.testDebate" configurationId="DjangoTestsConfigurationType" />
-    </history-entry>
     <history-entry file="Test__tab_test_testDebate - 2015.11.22 at 16h 45m 12s.xml">
       <configuration name="Test: tab.test.testDebate" configurationId="DjangoTestsConfigurationType" />
     </history-entry>
@@ -575,9 +572,12 @@
     <history-entry file="Test__tab_test_testDebate - 2015.11.22 at 16h 58m 39s.xml">
       <configuration name="Test: tab.test.testDebate" configurationId="DjangoTestsConfigurationType" />
     </history-entry>
+    <history-entry file="Test__tab_test_testDebate - 2015.11.22 at 17h 01m 16s.xml">
+      <configuration name="Test: tab.test.testDebate" configurationId="DjangoTestsConfigurationType" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="224" y="99" width="1087" height="825" extended-state="0" />
+    <frame x="266" y="173" width="1087" height="825" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3146274" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -786,16 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tab/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="81" selection-start-line="63" selection-start-column="81" selection-end-line="63" selection-end-column="81" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tab/test/generate_objects.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -806,8 +796,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tab/test/testDebate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9373695">
+        <state vertical-scroll-proportion="0.0">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tab/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8768267">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>

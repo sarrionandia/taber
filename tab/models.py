@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.core.validators import MinValueValidator
 
 # Create your models here.
 
@@ -43,7 +44,7 @@ class Venue(models.Model):
         return self.name
 
 class Debate(models.Model):
-    round = models.IntegerField()
+    round = models.IntegerField(validators=[MinValueValidator(1)])
     venue = models.ForeignKey(Venue)
     OG = models.ForeignKey(Team, related_name='OG')
     OO = models.ForeignKey(Team, related_name='OO')
