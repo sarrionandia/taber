@@ -62,7 +62,7 @@ class Debate(models.Model):
 
     def clean(self):
         self.validate_team_unique()
-        
+        self.validate_venue_unique()
 
     def validate_venue_unique(self):
         if(Debate.objects.filter(round=self.round, venue=self.venue).count() >= 1):
