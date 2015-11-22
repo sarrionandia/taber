@@ -28,6 +28,4 @@ class Judge(models.Model):
     institution = models.ForeignKey(Institution)
 
     def __str__(self):
-        return self.name
-
-
+        return self.name + ' <' + self.institution.__str__() + '>'
