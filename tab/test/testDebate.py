@@ -68,3 +68,13 @@ class DebateTestCase(TestCase):
         debate1.save()
         with self.assertRaises(ValidationError):
             debate2.full_clean()
+
+    def test_positions(self):
+        debate = generate_objects.valid_debate()
+        positions = debate.getPositions()
+        self.assertEqual(debate.OG, positions['OG'])
+        self.assertEqual(debate.OO, positions['OO'])
+        self.assertEqual(debate.CG, positions['CG'])
+        self.assertEqual(debate.CO, positions['CO'])
+
+
