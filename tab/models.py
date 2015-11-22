@@ -63,3 +63,6 @@ class Debate(models.Model):
     def clean(self):
         if (len(self.getPositions().values()) > (len(set(self.getPositions().values())))):
             raise ValidationError("A team can't be in two positions in one room")
+
+        if(Debate.objects.filter(round=self.round, venue=self.venue).count() >= 1):
+            raise ValidationError("A venue can't be used for multiple debates in the same round")
