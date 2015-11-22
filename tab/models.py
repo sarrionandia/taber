@@ -50,3 +50,15 @@ class Debate(models.Model):
     CG = models.ForeignKey(Team, related_name='CG')
     CO = models.ForeignKey(Team, related_name='CO')
     Chair = models.ForeignKey(Judge)
+
+    def getPositions(self):
+        return {
+            'OG' : self.OG,
+            'OO' : self.OO,
+            'CG' : self.CG,
+            'CO' : self.CO
+                 }
+
+    def clean(self):
+        if (len(self.getPositions().values()) > (len(set(self.getPositions().values())))):
+            raise ValidationError("A team can't be in two positions in one room")
