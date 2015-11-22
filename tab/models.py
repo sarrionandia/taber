@@ -41,3 +41,12 @@ class Venue(models.Model):
 
     def __str__(self):
         return self.name
+
+class Debate(models.Model):
+    round = models.IntegerField()
+    venue = models.ForeignKey(Venue)
+    OG = models.ForeignKey(Team, related_name='OG')
+    OO = models.ForeignKey(Team, related_name='OO')
+    CG = models.ForeignKey(Team, related_name='CG')
+    CO = models.ForeignKey(Team, related_name='CO')
+    Chair = models.ForeignKey(Judge)
