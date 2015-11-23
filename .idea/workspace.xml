@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a43f0d7f-a78e-4585-bf61-44a31e82f34d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/urls.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/views.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tab/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tab/migrations/0002_judge.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tab/migrations/0003_venue.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tab/migrations/0004_debate.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tab/migrations/0005_auto_20151122_1751.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tab/views.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tab/__init__.py" afterPath="$PROJECT_DIR$/data/test/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tab/admin.py" afterPath="$PROJECT_DIR$/data/admin.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tab/migrations/__init__.py" afterPath="$PROJECT_DIR$/data/migrations/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tab/models.py" afterPath="$PROJECT_DIR$/data/models.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tab/test/__init__.py" afterPath="$PROJECT_DIR$/data/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tab/test/generate_objects.py" afterPath="$PROJECT_DIR$/data/test/generate_objects.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tab/test/testDebate.py" afterPath="$PROJECT_DIR$/data/test/testDebate.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tab/test/testInstitution.py" afterPath="$PROJECT_DIR$/data/test/testInstitution.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tab/test/testJudge.py" afterPath="$PROJECT_DIR$/data/test/testJudge.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tab/test/testSpeaker.py" afterPath="$PROJECT_DIR$/data/test/testSpeaker.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tab/test/testTeam.py" afterPath="$PROJECT_DIR$/data/test/testTeam.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tab/test/testVenue.py" afterPath="$PROJECT_DIR$/data/test/testVenue.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/tab/tests.py" afterPath="$PROJECT_DIR$/data/tests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/taber/settings.py" afterPath="$PROJECT_DIR$/taber/settings.py" />
-    </list>
+    <list default="true" id="a43f0d7f-a78e-4585-bf61-44a31e82f34d" name="Default" comment="" />
     <ignored path="taber.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
