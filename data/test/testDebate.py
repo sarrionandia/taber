@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 
-from tab.models import Team, Venue, Judge, Debate, Institution
+from data.models import Team, Venue, Judge, Debate, Institution
 import generate_objects
 from django.test import TestCase
 

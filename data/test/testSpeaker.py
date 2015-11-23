@@ -1,6 +1,6 @@
 from django.core.exceptions import ValidationError
 
-from tab.models import Institution, Team, Speaker
+from data.models import Institution, Team, Speaker
 from django.test import TestCase
 
 

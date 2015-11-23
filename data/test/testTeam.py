@@ -1,4 +1,4 @@
-from tab.models import Institution, Team
+from data.models import Institution, Team
 from django.test import TestCase
 
 

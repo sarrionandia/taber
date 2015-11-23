@@ -1,4 +1,4 @@
-from tab.models import *
+from data.models import *
 
 
 def valid_team():

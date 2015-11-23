@@ -1,4 +1,4 @@
-from tab.models import Venue
+from data.models import Venue
 from django.test import TestCase
 
 

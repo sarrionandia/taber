@@ -1,4 +1,4 @@
-from tab.models import Institution, Judge
+from data.models import Institution, Judge
 from django.test import TestCase
 
 
