@@ -1,5 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-def teams(request):
+def index(request):
     return HttpResponse("Teams Index")
