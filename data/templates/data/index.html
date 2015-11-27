@@ -1,5 +1,6 @@
-<h1>Taberystwyth</h1>
+{% extends "root.html" %}
 
+{% block content %}
 <section class="teams">
     <h1>Teams</h1>
         <ul>{% for t in teams %}
@@ -22,3 +23,4 @@
     {% endfor %}
     </ul>
 </section>
+{% endblock %}
