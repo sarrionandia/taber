@@ -8,6 +8,7 @@ $( document ).ready(function() {
 });
 
 function create_institution() {
+    $('#inst_create').attr('disabled', true);
     var name = $('#inst_name_input').val();
     var request = $.post("/data/institution/create/",
         {'name': name},
@@ -18,7 +19,7 @@ function create_institution() {
             var inst = response.id;
             var name = response.name;
 
-            $('#inst_list').append(
+            $('#inst_list').prepend(
                 $('<li/>')
                     .addClass('row')
                     .attr('id', 'inst_'+ inst)
@@ -45,6 +46,8 @@ function create_institution() {
                             )
                     )
             );
+            $('#inst_name_input').val('');
+            $('#inst_create').attr('disabled', false);
 
         })
 
