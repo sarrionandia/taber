@@ -3,8 +3,26 @@ $( document ).ready(function() {
     $('#inst_name_input').on("keyup", function(){
         $('#inst_create').attr('disabled', ($('#inst_name_input').val().length <= 0));
     });
+    $('#inst_create').on("click", create_institution);
 
 });
+
+function create_institution() {
+    var name = $('#inst_name_input').val();
+    var request = $.post("/data/institution/create/",
+        {'name': name},
+        function() {
+            })
+
+        .fail(function(){
+            alert("Unable to create institution");
+        })
+
+        .success(function() {
+            alert("Created institution");
+        });
+
+}
 
 function delete_inst(inst_id) {
     $('#inst_' + inst_id).find('button').attr('disabled', true);

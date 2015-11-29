@@ -45,4 +45,3 @@ class CreateInstitutionView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
         return super(CreateInstitutionView, self).dispatch(*args, **kwargs)
-
