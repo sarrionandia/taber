@@ -31,3 +31,14 @@ class DeleteInstitutionView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
         return super(DeleteInstitutionView, self).dispatch(*args, **kwargs)
+
+class CreateInstitutionView(View):
+    def post(self, request):
+        name = request.POST.get('name')
+        institution = Institution(name=name)
+        institution.save()
+        return HttpResponse('id: 0')
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(CreateInstitutionView, self).dispatch(*args, **kwargs)
