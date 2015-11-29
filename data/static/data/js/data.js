@@ -3,5 +3,10 @@ $( document ).ready(function() {
 });
 
 function delete_inst(inst_id) {
-    alert(inst_id);
+    $.post("/data/institution/" + inst_id + "/delete/",
+        {institution: inst_id},
+        function() {
+            $('#inst_' + inst_id).remove();
+        }
+    )
 }

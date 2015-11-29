@@ -36,7 +36,7 @@
             <section class="institutions">
                 <ul>
                     {% for i in institutions %}
-                        <li class="row">
+                        <li class="row" id="inst_{{ i.id }}">
                             <span class="institution_name col-sm-10">
                             {{ i.name }}
                             </span>
