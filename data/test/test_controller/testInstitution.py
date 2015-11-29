@@ -4,6 +4,9 @@ from data.test import generate_objects
 from data.views import DeleteInstitutionView, CreateInstitutionView
 from data.models import Institution
 from django.test.client import RequestFactory
+import json
+
+
 class InstitutionTestCase(TestCase):
 
     def setUp(self):
@@ -35,6 +38,10 @@ class InstitutionTestCase(TestCase):
         request = self.factory.post('/data/institution/create', data={'name' : 'New University'})
 
         view = CreateInstitutionView()
-        view.post(request)
+        response = json.loads(view.post(request).content)
 
         self.assertEqual(count+1, Institution.objects.all().count(), "Didn't create a new Institution")
+
+        createdInstitution = Institution.objects.get(id=int(response['id']));
+        self.assertEqual(createdInstitution.name, 'New University', "Didn't save the university with the correct name")
+

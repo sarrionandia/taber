@@ -5,6 +5,7 @@ from django.views.generic import View
 from django.template import RequestContext, loader
 from models import Institution, Judge, Team
 from django.views.decorators.csrf import csrf_exempt
+import json
 
 def index(request):
     template = loader.get_template('data/index.html')
@@ -37,7 +38,9 @@ class CreateInstitutionView(View):
         name = request.POST.get('name')
         institution = Institution(name=name)
         institution.save()
-        return HttpResponse('id: 0')
+
+        response = {"id" : institution.id}
+        return HttpResponse(json.dumps(response))
 
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
