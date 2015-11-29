@@ -53,6 +53,7 @@ function create_institution() {
 
         .fail(function(){
             alert("Unable to create institution");
+            $('#inst_create').attr('disabled', false);
         })
 
         .success(function() {
