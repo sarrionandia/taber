@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse, Http404
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 from django.template import RequestContext, loader
@@ -18,8 +19,12 @@ class DeleteInstitutionView(View):
 
     def post(self, request, institutionid):
 
-        institution = Institution.objects.get(id=institutionid)
-        institution.delete()
+
+        try:
+            institution = Institution.objects.get(id=institutionid)
+            institution.delete()
+        except ObjectDoesNotExist:
+            raise Http404("Institution does not exist")
 
         return HttpResponse(institutionid)
 
