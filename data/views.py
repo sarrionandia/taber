@@ -16,11 +16,10 @@ def index(request):
     })
     return HttpResponse(template.render(context))
 
+
 class DeleteInstitutionView(View):
 
     def post(self, request, institutionid):
-
-
         try:
             institution = Institution.objects.get(id=institutionid)
             institution.delete()
@@ -32,6 +31,7 @@ class DeleteInstitutionView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
         return super(DeleteInstitutionView, self).dispatch(*args, **kwargs)
+
 
 class CreateInstitutionView(View):
     def post(self, request):
