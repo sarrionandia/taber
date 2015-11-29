@@ -9,6 +9,8 @@ $( document ).ready(function() {
 
 function create_institution() {
     $('#inst_create').attr('disabled', true);
+    $('#inst_name_input').attr('disabled', true);
+
     var name = $('#inst_name_input').val();
     var request = $.post("/data/institution/create/",
         {'name': name},
@@ -47,13 +49,16 @@ function create_institution() {
                     )
             );
             $('#inst_name_input').val('');
-            $('#inst_create').attr('disabled', false);
+            $('#inst_name_input').attr('disabled', false);
+
 
         })
 
         .fail(function(){
             alert("Unable to create institution");
             $('#inst_create').attr('disabled', false);
+            $('#inst_name_input').attr('disabled', false);
+
         })
 
         .success(function() {
