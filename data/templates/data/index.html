@@ -2,6 +2,7 @@
 
 {% block head_extra %}
     <link href="/static/data/css/data.css" rel="stylesheet">
+    <script type="text/javascript" src="/static/data/js/data.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -41,7 +42,11 @@
                             </span>
 
                             <div class="institution_controls col-sm-2">
-                            <button class="btn btn-danger delete-institution">
+                            <button
+                                    class="btn btn-danger delete-institution"
+                                    data-toggle="tooltip"
+                                    title="This will delete all teams and judges"
+                                    data-placement="top">
                                 Delete
                             </button>
                             </div>
