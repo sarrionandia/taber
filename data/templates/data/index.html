@@ -1,26 +1,41 @@
 {% extends "root.html" %}
 
 {% block content %}
-<section class="teams">
-    <h1>Teams</h1>
-        <ul>{% for t in teams %}
-        <li>{{ t }}</li>{% endfor %}
-    </ul>
-</section>
 
-<section class="judges">
-    <h1>Judges</h1>
-    <ul>{% for j in judges %}
-        <li>{{ j }}</li>{% endfor %}
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#institutions" aria-controls="institutions" role="tab" data-toggle="tab">Institutions</a></li>
+        <li role="presentation"><a href="#teams" aria-controls="teams" role="tab" data-toggle="tab">Teams</a></li>
+        <li role="presentation"><a href="#judges" aria-controls="judges" role="tab" data-toggle="tab">Judges</a></li>
     </ul>
-</section>
 
-<section class="institutions">
-    <h1>Institutions</h1>
-    <ul>
-    {% for i in institutions %}
-        <li>{{ i.name }}</li>
-    {% endfor %}
-    </ul>
-</section>
+
+    <div class="tab-content">
+
+        <div role="tabpanel" class="tab-pane" id="teams">
+            <section class="teams">
+                <ul>{% for t in teams %}
+                    <li>{{ t }}</li>{% endfor %}
+                </ul>
+            </section>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="judges">
+            <section class="judges">
+                <ul>{% for j in judges %}
+                    <li>{{ j }}</li>{% endfor %}
+                </ul>
+            </section>
+        </div>
+
+        <div role="tabpanel" class="tab-pane active" id="institutions">
+            <section class="institutions">
+                <ul>
+                    {% for i in institutions %}
+                        <li>{{ i.name }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </div>
+
+    </div>
 {% endblock %}
