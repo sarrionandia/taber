@@ -11,15 +11,49 @@ function create_institution() {
     var name = $('#inst_name_input').val();
     var request = $.post("/data/institution/create/",
         {'name': name},
-        function() {
-            })
+        function(data) {
+
+            var response = jQuery.parseJSON(data);
+
+            var inst = response.id;
+            var name = response.name;
+
+            $('#inst_list').append(
+                $('<li/>')
+                    .addClass('row')
+                    .attr('id', 'inst_'+ inst)
+                    .append(
+                        $('<span/>')
+                            .addClass('col-sm-10')
+                            .addClass('institution_name')
+                            .html(name)
+                    )
+                    .append(
+                        $('<div/>')
+                            .addClass('col-sm-2')
+                            .addClass('institution_controls')
+                            .append(
+                                $('<button/>')
+                                    .addClass('btn')
+                                    .addClass('btn-danger')
+                                    .addClass('delete-institution')
+                                    .attr('data-toggle', 'tooltip')
+                                    .attr('title', 'This will delete all teams and judges')
+                                    .attr('data-placement', 'top')
+                                    .attr('onclick', 'delete_inst(' + inst + ');')
+                                    .html("Delete")
+                            )
+                    )
+            );
+
+        })
 
         .fail(function(){
             alert("Unable to create institution");
         })
 
         .success(function() {
-            alert("Created institution");
+
         });
 
 }
@@ -30,7 +64,7 @@ function delete_inst(inst_id) {
     var request = $.post("/data/institution/" + inst_id + "/delete/",
         {institution: inst_id},
         function() {
-            })
+        })
 
         .fail(function(){
             alert('Unable to delete institution ' + inst_id);
@@ -43,4 +77,4 @@ function delete_inst(inst_id) {
 
 
 
-    }
+}

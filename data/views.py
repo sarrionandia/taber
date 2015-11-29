@@ -39,7 +39,8 @@ class CreateInstitutionView(View):
         institution = Institution(name=name)
         institution.save()
 
-        response = {"id" : institution.id}
+        response = {"id" : institution.id,
+                    "name" : institution.name}
         return HttpResponse(json.dumps(response))
 
     @method_decorator(csrf_exempt)
