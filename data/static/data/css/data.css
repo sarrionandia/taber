@@ -1,0 +1,28 @@
+.institutions ul {
+    list-style-type: none;
+    padding: 0px;
+    margin-top: 10px;
+    position: relative;
+    max-width: 670px;
+}
+
+.institutions ul li {
+    border: 1px solid #ffffff;
+    width: 100%;
+    min-height: 70px;
+    margin-bottom: 10px;
+    line-height: 35px;
+    padding-left: 15px;
+    border-radius: 5px;
+    font-size: x-large;
+    padding-top: 10px;
+}
+
+.institutions ul li:hover {
+    border: 1px solid #00bc8c;
+    color: #00bc8c;
+}
+
+.institutions ul li button.delete-institution {
+    margin-top: auto;
+}

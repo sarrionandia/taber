@@ -1,5 +1,9 @@
 {% extends "root.html" %}
 
+{% block head_extra %}
+    <link href="/static/data/css/data.css" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 
     <ul class="nav nav-tabs" role="tablist">
@@ -31,11 +35,21 @@
             <section class="institutions">
                 <ul>
                     {% for i in institutions %}
-                        <li>{{ i.name }}</li>
+                        <li class="row">
+                            <span class="institution_name col-sm-10">
+                            {{ i.name }}
+                            </span>
+
+                            <div class="institution_controls col-sm-2">
+                            <button class="btn btn-danger delete-institution">
+                                Delete
+                            </button>
+                            </div>
+                        </li>
                     {% endfor %}
-                </ul>
-            </section>
-        </div>
+        </ul>
+        </section>
+    </div>
 
     </div>
 {% endblock %}
