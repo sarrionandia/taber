@@ -1,5 +1,9 @@
 $( document ).ready(function() {
     $('[data-toggle="tooltip"]').tooltip()
+    $('#inst_name_input').on("keyup", function(){
+        $('#inst_create').attr('disabled', ($('#inst_name_input').val().length <= 0));
+    });
+
 });
 
 function delete_inst(inst_id) {

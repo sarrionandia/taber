@@ -1,7 +1,12 @@
+.tab-pane {
+    margin-top: 10px;
+}
+
 .institutions ul {
     list-style-type: none;
     padding: 0px;
     margin-top: 10px;
+    margin-left: 15px;
     position: relative;
     max-width: 670px;
 }
@@ -25,4 +30,8 @@
 
 .institutions ul li button.delete-institution {
     margin-top: auto;
+}
+
+.add_inst_controls {
+    max-width: 670px;
 }

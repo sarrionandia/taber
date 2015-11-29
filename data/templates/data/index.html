@@ -34,6 +34,19 @@
 
         <div role="tabpanel" class="tab-pane active" id="institutions">
             <section class="institutions">
+
+                <div class="add_inst_controls">
+                        <div class="input-group">
+                          <span class="input-group-btn">
+                            <button class="btn btn-success"
+                                    type="button"
+                                    id="inst_create"
+                                    disabled>Add Institution</button>
+                          </span>
+                            <input type="text" class="form-control" placeholder="Institution Name" id="inst_name_input">
+                        </div>
+                </div>
+
                 <ul>
                     {% for i in institutions %}
                         <li class="row" id="inst_{{ i.id }}">
@@ -42,20 +55,20 @@
                             </span>
 
                             <div class="institution_controls col-sm-2">
-                            <button
-                                    class="btn btn-danger delete-institution"
-                                    data-toggle="tooltip"
-                                    title="This will delete all teams and judges"
-                                    data-placement="top"
-                                    onclick="delete_inst({{ i.id }});">
-                                Delete
-                            </button>
+                                <button
+                                        class="btn btn-danger delete-institution"
+                                        data-toggle="tooltip"
+                                        title="This will delete all teams and judges"
+                                        data-placement="top"
+                                        onclick="delete_inst({{ i.id }});">
+                                    Delete
+                                </button>
                             </div>
                         </li>
                     {% endfor %}
-        </ul>
-        </section>
-    </div>
+                </ul>
+            </section>
+        </div>
 
     </div>
 {% endblock %}
