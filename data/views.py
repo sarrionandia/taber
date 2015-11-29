@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 def index(request):
     template = loader.get_template('data/index.html')
     context = RequestContext(request, {
-        'institutions' : Institution.objects.all(),
+        'institutions' : Institution.objects.all().order_by('name'),
         'judges' : Judge.objects.all(),
         'teams' : Team.objects.all()
     })
