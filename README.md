@@ -14,3 +14,4 @@ Taberystwyth: Open source, testable tabbing program.
 
 # Testing
 * From inside the project directory, run `./manage.py test`
+* To run some manual tests, you can generate some fake data with `./manage.py seed_db`
