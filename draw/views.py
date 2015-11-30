@@ -1,9 +1,10 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template import RequestContext, loader
 from django.views.generic import View
 
 from data.models import Team
+from draw.controller.InitialDrawController import InitialDrawController
 
 
 class DrawControl(View):
@@ -18,3 +19,9 @@ class DrawControl(View):
             'rooms' : team_count / 4,
         })
         return HttpResponse(template.render(context))
+
+class DrawFirstRound(View):
+    def post(self, request):
+        controller = InitialDrawController()
+        controller.initial_draw()
+        return redirect('/draw')

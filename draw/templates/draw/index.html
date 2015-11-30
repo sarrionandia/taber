@@ -18,7 +18,10 @@
         round has been drawn, you will be unable to add or delete teams, or
         delete judges.
     </p>
-
-        <button class="button btn-success btn-lg">Draw Round 1</button>
+        <form method="post" action='/draw/round/first/'>
+        {% csrf_token %}
+            <button class="button btn-success btn-lg"
+                    type="submit">Draw Round 1</button>
+        </form>
     {% endif %}
 {% endblock %}
