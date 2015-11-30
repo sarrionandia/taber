@@ -1,19 +1,19 @@
-$( document ).ready(function() {
+$(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip()
-    $('#inst_name_input').on("keyup", function(e){
-        if (e.keyCode == 13){create_institution();}
+    $('#inst_name_input').on("keyup", function (e) {
+        if (e.keyCode == 13) {
+            create_institution();
+        }
         $('#inst_create').attr('disabled', ($('#inst_name_input').val().length <= 0));
     });
     $('#inst_create').on("click", create_institution);
-    $('.institution_name').on("change", function() {
+    $('.institution_name').on("change", function () {
         update_institution(event.target.id.substring(11), this.value);
     });
-    $('.create_team_form').on('submit',function (e) {
+    $('.create_team_form').on('submit', function (e) {
         e.preventDefault();
         return false;
     })
-
-
 });
 
 function update_institution(id, name) {
@@ -23,10 +23,10 @@ function update_institution(id, name) {
         data: {
             'name': name
         },
-        success: function() {
+        success: function () {
 
         },
-        error: function(request, error) {
+        error: function (request, error) {
             alert("Couldn't update " + name);
         }
     });
@@ -39,7 +39,7 @@ function create_institution() {
     var name = $('#inst_name_input').val();
     var request = $.post("/data/institution/create/",
         {'name': name},
-        function(data) {
+        function (data) {
 
             var response = jQuery.parseJSON(data);
 
@@ -49,7 +49,7 @@ function create_institution() {
             $('#inst_list').prepend(
                 $('<li/>')
                     .addClass('row')
-                    .attr('id', 'inst_'+ inst)
+                    .attr('id', 'inst_' + inst)
                     .append(
                         $('<input/>')
                             .addClass('col-sm-10')
@@ -78,19 +78,19 @@ function create_institution() {
             $('#inst_name_input').val('');
             $('#inst_name_input').attr('disabled', false);
             $('#inst_name_input').focus();
-            $('.institution_name').on("change", function() {
+            $('.institution_name').on("change", function () {
                 update_institution(event.target.id.substring(11), this.value);
             });
         })
 
-        .fail(function(){
+        .fail(function () {
             alert("Unable to create institution");
             $('#inst_create').attr('disabled', false);
             $('#inst_name_input').attr('disabled', false);
 
         })
 
-        .success(function() {
+        .success(function () {
 
         });
 
@@ -101,16 +101,16 @@ function delete_inst(inst_id) {
 
     var request = $.post("/data/institution/" + inst_id + "/delete/",
         {institution: inst_id},
-        function() {
+        function () {
         })
 
-        .fail(function(){
+        .fail(function () {
             alert('Unable to delete institution ' + inst_id);
             $('#inst_' + inst_id).find('button').attr('disabled', false);
         })
 
-        .success(function() {
-            $('#inst_' + inst_id).toggle({ effect: "scale", direction: "vertical" });
+        .success(function () {
+            $('#inst_' + inst_id).toggle({effect: "scale", direction: "vertical"});
         });
 }
 
@@ -119,10 +119,10 @@ function delete_team(team_id) {
         type: 'POST',
         url: '/data/team/' + team_id + '/delete/',
         data: {},
-        success: function() {
+        success: function () {
             $('#t_' + team_id).remove();
         },
-        error: function(request, error) {
+        error: function (request, error) {
             alert("Server error: Couldn't delete team");
         }
     });
@@ -134,7 +134,7 @@ function create_team(inst_id) {
         type: 'POST',
         url: '/data/team/create/',
         data: $('#t_form_' + inst_id).serialize(),
-        success: function(data) {
+        success: function (data) {
             var resp = jQuery.parseJSON(data);
             $('#t_form_' + inst_id + ' :input').prop("disabled", false);
             $('#t_form_' + inst_id).trigger('reset');
@@ -162,14 +162,11 @@ function create_team(inst_id) {
                                 .attr('onclick', 'delete_team(' + resp['id'] + ');')
                                 .attr('type', 'submit')
                                 .html("Delete")
-
                         )
                 )
-
-
                 .insertBefore('.form_row_' + inst_id);
         },
-        error: function(request, error) {
+        error: function (request, error) {
             alert("Couldn't create team");
         }
     });
