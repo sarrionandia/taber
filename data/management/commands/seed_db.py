@@ -1,4 +1,4 @@
-from data.models import Institution, Judge, Team, Speaker
+from data.models import Institution, Judge, Team, Speaker, Venue
 from django.core.management.base import NoArgsCommand
 from random import randint
 
@@ -34,6 +34,10 @@ class Command(NoArgsCommand):
 
                 speaker2 = Speaker(name=self.random_name(), team=team)
                 speaker2.save()
+
+        for v in venues:
+            venue = Venue(name=v)
+            venue.save()
 
     def random_institution(self):
         return  Institution.objects.order_by('?').first()
@@ -100,4 +104,18 @@ names = [
     'Geraldo Flecha',
     'Shay Sarinana',
     'Trula Forbus',
+]
+
+venues = [
+    'Room of Requirement',
+    'Chamber of Secrets',
+    'Ravenclaw Tower',
+    'Great Hall',
+    'Slytherin Dungeon',
+    'Forbidden Forest',
+    'Greenhouse 1',
+    'Charms Classroom',
+    'Hospital Tower'
+
+
 ]

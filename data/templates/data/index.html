@@ -11,6 +11,8 @@
         <li role="presentation" class="active"><a href="#institutions" aria-controls="institutions" role="tab" data-toggle="tab">Institutions</a></li>
         <li role="presentation"><a href="#teams" aria-controls="teams" role="tab" data-toggle="tab">Teams</a></li>
         <li role="presentation"><a href="#judges" aria-controls="judges" role="tab" data-toggle="tab">Judges</a></li>
+        <li role="presentation"><a href="#venues" aria-controls="venues" role="tab" data-toggle="tab">Venues</a></li>
+
     </ul>
 
 
@@ -40,9 +42,9 @@
                                 </td>
                             </tr>
                         {% endfor %}
-                            <tr class="form_row_{{ i.id }}">
-                                <form action="/data/team/create/" class="create_team_form" method="none" id="t_form_{{ i.id }}">
-                                    <input type="hidden" name="institution" value="{{ i.id }}">
+                        <tr class="form_row_{{ i.id }}">
+                            <form action="/data/team/create/" class="create_team_form" method="none" id="t_form_{{ i.id }}">
+                                <input type="hidden" name="institution" value="{{ i.id }}">
                                 <td><input name="name" id="t_name_{{ t.id }}" placeholder="Name" required></td>
                                 <td><input name="speaker1" id="t_sp1_{{ t.id }}" placeholder="Speaker 1" required></td>
                                 <td><input name="speaker2" id="t_sp2_{{ t.id }}" placeholder="Speaker 2" required></td>
@@ -53,8 +55,8 @@
                                         Create
                                     </button>
                                 </td>
-                                </form>
-                            </tr>
+                            </form>
+                        </tr>
                     </table>
                 {% endfor %}
             </section>
@@ -103,6 +105,15 @@
                 </ul>
             </section>
         </div>
+
+        <div role="tabpanel" class="tab-pane" id="venues">
+            <section class="venues">
+                <ul>{% for v in venues %}
+                    <li>{{ v }}</li>{% endfor %}
+                </ul>
+            </section>
+        </div>
+
 
     </div>
 {% endblock %}

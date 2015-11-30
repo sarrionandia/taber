@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 from django.template import RequestContext, loader
-from models import Institution, Judge, Team, Speaker
+from models import Institution, Judge, Team, Speaker, Venue
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -12,7 +12,8 @@ def index(request):
     context = RequestContext(request, {
         'institutions' : Institution.objects.all().order_by('name'),
         'judges' : Judge.objects.all(),
-        'teams' : Team.objects.all()
+        'teams' : Team.objects.all(),
+        'venues' : Venue.objects.all(),
     })
     return HttpResponse(template.render(context))
 
@@ -114,17 +115,21 @@ class CreateTeamView(View):
 class UpdateTeamView(View):
 
     def post(self, request, teamid):
-        team = Team.objects.get(id=teamid)
-        team.name = request.POST.get('name')
+        try:
+            team = Team.objects.get(id=teamid)
+            team.name = request.POST.get('name')
 
-        speaker1 = team.speakers[0]
-        speaker2 = team.speakers[1]
+            speaker1 = team.speakers[0]
+            speaker2 = team.speakers[1]
 
-        speaker1.name = request.POST.get('speaker1')
-        speaker2.name = request.POST.get('speaker2')
+            speaker1.name = request.POST.get('speaker1')
+            speaker2.name = request.POST.get('speaker2')
 
-        speaker1.save()
-        speaker2.save()
+            speaker1.save()
+            speaker2.save()
 
-        team.save()
+            team.save()
+
+        except ObjectDoesNotExist:
+            raise Http404("Team does not exist")
         return HttpResponse("OK")

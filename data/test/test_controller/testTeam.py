@@ -100,3 +100,10 @@ class TeamTestCase(TestCase):
         self.assertEqual("New Name", team.name, "Team name wasn't updated")
         for speaker in team.speakers:
             self.assertTrue(speaker.name == 'newsp1' or speaker.name == 'newsp2', "Speaker name wasn't updated: " + speaker.name)
+
+
+    def testUpdateTeamWithTeamDoesntExist(self):
+        view = UpdateTeamView()
+
+        with self.assertRaises(Http404):
+            view.post(None, 0)
