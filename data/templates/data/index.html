@@ -24,6 +24,9 @@
                         {% for t in i.teams %}
                             <tr>
                                 <td>{{ t.name }}</td>
+                                {% for s in t.speakers %}
+                                    <td>{{ s.name }}</td>
+                                {% endfor %}
                             </tr>
                         {% endfor %}
                     </table>
