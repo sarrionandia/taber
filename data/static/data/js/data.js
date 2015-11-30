@@ -8,10 +8,10 @@ $( document ).ready(function() {
     $('.institution_name').on("change", function() {
         update_institution(event.target.id.substring(11), this.value);
     });
-    $('.create_team_form').on('submit','.validateDontSubmit',function (e) {
+    $('.create_team_form').on('submit',function (e) {
         e.preventDefault();
-    return false;
-})
+        return false;
+    })
 
 
 });
@@ -115,7 +115,7 @@ function delete_inst(inst_id) {
 }
 
 function delete_team(team_id) {
-        $.ajax({
+    $.ajax({
         type: 'POST',
         url: '/data/team/' + team_id + '/delete/',
         data: {},
@@ -126,4 +126,19 @@ function delete_team(team_id) {
             alert("Server error: Couldn't delete team");
         }
     });
+}
+
+function create_team(inst_id) {
+    console.log(inst_id);
+    $.ajax({
+    type: 'POST',
+    url: '/data/team/create/',
+    data: $('#t_form_' + inst_id).serialize(),
+    success: function() {
+        alert("Created team")
+    },
+    error: function(request, error) {
+        alert("Couldn't create team");
+    }
+});
 }

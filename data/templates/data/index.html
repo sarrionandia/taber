@@ -41,13 +41,14 @@
                             </tr>
                         {% endfor %}
                             <tr>
-                                <form action="#" class="create_team_form">
-                                <td><input id="t_name_{{ t.id }}" placeholder="Name" required></td>
-                                <td><input id="t_sp1_{{ t.id }}" placeholder="Speaker 1" required></td>
-                                <td><input id="t_sp2_{{ t.id }}" placeholder="Speaker 2" required></td>
+                                <form action="/data/team/create/" class="create_team_form" method="none" id="t_form_{{ i.id }}">
+                                    <input type="hidden" name="institution" value="{{ i.id }}">
+                                <td><input name="name" id="t_name_{{ t.id }}" placeholder="Name" required></td>
+                                <td><input name="speaker1" id="t_sp1_{{ t.id }}" placeholder="Speaker 1" required></td>
+                                <td><input name="speaker2" id="t_sp2_{{ t.id }}" placeholder="Speaker 2" required></td>
                                 <td>
                                     <button class="btn btn-sm btn-success"
-                                            onclick="create_team({{ t.id }});"
+                                            onclick="create_team({{ i.id }});"
                                             type="submit">
                                         Create
                                     </button>
