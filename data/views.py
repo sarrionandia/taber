@@ -56,7 +56,12 @@ class UpdateInstitutionView(View):
             institution.name = request.POST.get('name')
             institution.save()
 
-            return HttpResponse("ok");
+            response = {
+                'name' : institution.name,
+                'id' : institution.id
+            }
+
+            return HttpResponse(json.dumps(response));
 
         except ObjectDoesNotExist:
             raise Http404("Institution does not exist")

@@ -61,3 +61,14 @@ class InstitutionTestCase(TestCase):
 
         with self.assertRaises(Http404):
             view.post(None, 0)
+
+    def testReturnsInstitutionInformation(self):
+        view = UpdateInstitutionView();
+        institution = generate_objects.valid_institution()
+        request = self.factory.post('/data/institution/' + str(institution.id) + '/update/',
+                            data = {'name' : 'Updated Name'})
+        response = json.loads(view.post(request, institution.id).content)
+        institution.refresh_from_db()
+
+        self.assertEqual(response['name'], institution.name, "Didn't return the updated name of the institution")
+        self.assertEqual(int(response['id']), institution.id, "Didn't return the ID of the updated institution")
