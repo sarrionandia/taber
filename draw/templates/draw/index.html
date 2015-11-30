@@ -1,6 +1,24 @@
 {% extends "root.html" %}
 
 {% block content %}
+<h1>Draw Console</h1>
 
+    <div class="alert {% if teams_ok %}alert-success{% else %}alert-danger{% endif %}">
+    <strong>{{ teams_count }} teams</strong>:
+        {% if teams_ok %}
+        This is a {{ rooms }} room tournament
+        {% else %}
+        The number of teams must be a multiple of four, and must be at least 4.
+        {% endif %}
+    </div>
 
+    {% if teams_ok %}
+    <p>
+        When you are ready you can create the draw for Round 1. Once the first
+        round has been drawn, you will be unable to add or delete teams, or
+        delete judges.
+    </p>
+
+        <button class="button btn-success btn-lg">Draw Round 1</button>
+    {% endif %}
 {% endblock %}
