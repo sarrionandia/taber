@@ -51,11 +51,15 @@ class CreateInstitutionView(View):
 class UpdateInstitutionView(View):
 
     def post(self, request, institutionid):
-        institution = Institution.objects.get(id=institutionid)
-        institution.name = request.POST.get('name')
-        institution.save()
+        try:
+            institution = Institution.objects.get(id=institutionid)
+            institution.name = request.POST.get('name')
+            institution.save()
 
-        return HttpResponse("ok");
+            return HttpResponse("ok");
+
+        except ObjectDoesNotExist:
+            raise Http404("Institution does not exist")
 
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):

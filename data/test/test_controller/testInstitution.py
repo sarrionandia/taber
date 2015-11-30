@@ -55,3 +55,9 @@ class InstitutionTestCase(TestCase):
 
         institution.refresh_from_db()
         self.assertEqual('Updated Name', institution.name, "Did not update the name of the institution")
+
+    def test404WhenUpdatingInstitutionDoesntExist(self):
+        view = UpdateInstitutionView()
+
+        with self.assertRaises(Http404):
+            view.post(None, 0)
