@@ -40,7 +40,7 @@
                                 </td>
                             </tr>
                         {% endfor %}
-                            <tr>
+                            <tr class="form_row_{{ i.id }}">
                                 <form action="/data/team/create/" class="create_team_form" method="none" id="t_form_{{ i.id }}">
                                     <input type="hidden" name="institution" value="{{ i.id }}">
                                 <td><input name="name" id="t_name_{{ t.id }}" placeholder="Name" required></td>

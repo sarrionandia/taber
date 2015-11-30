@@ -131,15 +131,46 @@ function delete_team(team_id) {
 function create_team(inst_id) {
     $('#t_form_' + inst_id + ' :input').prop("disabled", true);
     $.ajax({
-    type: 'POST',
-    url: '/data/team/create/',
-    data: $('#t_form_' + inst_id).serialize(),
-    success: function() {
-        $('#t_form_' + inst_id + ' :input').prop("disabled", false);
-        $('#t_form_' + inst_id).trigger('reset');
-    },
-    error: function(request, error) {
-        alert("Couldn't create team");
-    }
-});
+        type: 'POST',
+        url: '/data/team/create/',
+        data: $('#t_form_' + inst_id).serialize(),
+        success: function(data) {
+            var resp = jQuery.parseJSON(data);
+            $('#t_form_' + inst_id + ' :input').prop("disabled", false);
+            $('#t_form_' + inst_id).trigger('reset');
+            $('<tr />')
+                .attr('id', 't_' + resp['id'])
+                .append(
+                    $('<td />')
+                        .html(resp['name'])
+                )
+                .append(
+                    $('<td />')
+                        .html(resp['speaker1'])
+                )
+                .append(
+                    $('<td />')
+                        .html(resp['speaker2'])
+                )
+                .append(
+                    $('<td />')
+                        .append(
+                            $('<button />')
+                                .addClass('btn')
+                                .addClass('btn-danger')
+                                .addClass('btn-sm')
+                                .attr('onclick', 'delete_team(' + resp['id'] + ');')
+                                .attr('type', 'submit')
+                                .html("Delete")
+
+                        )
+                )
+
+
+                .insertBefore('.form_row_' + inst_id);
+        },
+        error: function(request, error) {
+            alert("Couldn't create team");
+        }
+    });
 }
