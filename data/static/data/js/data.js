@@ -11,7 +11,19 @@ $( document ).ready(function() {
 });
 
 function update_institution(id, name) {
-    alert(id);
+    $.ajax({
+        type: 'POST',
+        url: '/data/institution/' + id + '/update/',
+        data: {
+            'name': name
+        },
+        success: function() {
+
+        },
+        error: function(request, error) {
+            alert("Couldn't update " + name);
+        }
+    });
 }
 
 function create_institution() {
