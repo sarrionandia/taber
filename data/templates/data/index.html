@@ -30,7 +30,7 @@
                         </tr>
                         </thead>
                         {% for t in i.teams %}
-                            <tr>
+                            <tr id="t_{{ t.id }}">
                                 <td>{{ t.name }}</td>
                                 {% for s in t.speakers %}
                                     <td>{{ s.name }}</td>

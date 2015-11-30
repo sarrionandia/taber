@@ -115,7 +115,7 @@ function delete_team(team_id) {
         url: '/data/team/' + team_id + '/delete/',
         data: {},
         success: function() {
-            alert("Deleted");
+            $('#t_' + team_id).remove();
         },
         error: function(request, error) {
             alert("Server error: Couldn't delete team");
