@@ -13,7 +13,6 @@ class TeamTestCase(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
 
-
     def testDeleteTeam(self):
         team_id = generate_objects.valid_team().id
         view = DeleteTeamView()
