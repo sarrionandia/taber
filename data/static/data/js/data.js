@@ -107,7 +107,18 @@ function delete_inst(inst_id) {
         .success(function() {
             $('#inst_' + inst_id).toggle({ effect: "scale", direction: "vertical" });
         });
+}
 
+function delete_team(team_id) {
+        $.ajax({
+        type: 'POST',
+        url: '/data/team/' + id + '/delete/',
+        data: {},
+        success: function() {
 
-
+        },
+        error: function(request, error) {
+            alert("Server error: Couldn't delete team");
+        }
+    });
 }

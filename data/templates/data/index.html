@@ -21,12 +21,23 @@
                 {% for i in institutions %}
                     <h2>{{ i.name }}</h2>
                     <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Team Name</th>
+                            <th>Speaker 1</th>
+                            <th>Speaker 2</th>
+                            <th>Delete</th>
+                        </tr>
+                        </thead>
                         {% for t in i.teams %}
                             <tr>
                                 <td>{{ t.name }}</td>
                                 {% for s in t.speakers %}
                                     <td>{{ s.name }}</td>
                                 {% endfor %}
+                                <td>
+                                    <button class="btn btn-sm btn-danger" onclick="delete_team({{ t.id }});">Delete</button>
+                                </td>
                             </tr>
                         {% endfor %}
                     </table>

@@ -69,3 +69,9 @@ class UpdateInstitutionView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
         return super(UpdateInstitutionView, self).dispatch(*args, **kwargs)
+
+class DeleteTeamView(View):
+    def post(self, request, teamid):
+        team = Team.objects.get(id=teamid)
+        team.delete()
+        return HttpResponse("OK")
