@@ -17,6 +17,10 @@ class Team(models.Model):
     name = models.CharField(max_length=50)
     institution = models.ForeignKey(Institution)
 
+    @property
+    def speakers(self):
+        return Speaker.objects.filter(team=self).order_by('id')
+
     def __str__(self):
         return self.institution.__str__() + ' ' + self.name
 

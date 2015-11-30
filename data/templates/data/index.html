@@ -20,11 +20,13 @@
             <section class="teams">
                 {% for i in institutions %}
                     <h2>{{ i.name }}</h2>
-                    <ul>
+                    <table class="table table-striped">
                         {% for t in i.teams %}
-                            <li>{{ t.name }}</li>
+                            <tr>
+                                <td>{{ t.name }}</td>
+                            </tr>
                         {% endfor %}
-                    </ul>
+                    </table>
                 {% endfor %}
             </section>
         </div>
