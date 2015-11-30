@@ -18,9 +18,14 @@
 
         <div role="tabpanel" class="tab-pane" id="teams">
             <section class="teams">
-                <ul>{% for t in teams %}
-                    <li>{{ t }}</li>{% endfor %}
-                </ul>
+                {% for i in institutions %}
+                    <h2>{{ i.name }}</h2>
+                    <ul>
+                        {% for t in i.teams %}
+                            <li>{{ t.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
             </section>
         </div>
 
@@ -36,15 +41,15 @@
             <section class="institutions">
 
                 <div class="add_inst_controls">
-                        <div class="input-group">
+                    <div class="input-group">
                           <span class="input-group-btn">
                             <button class="btn btn-success"
                                     type="button"
                                     id="inst_create"
                                     disabled>Add Institution</button>
                           </span>
-                            <input type="text" class="form-control" placeholder="Institution Name" id="inst_name_input">
-                        </div>
+                        <input type="text" class="form-control" placeholder="Institution Name" id="inst_name_input">
+                    </div>
                 </div>
 
                 <ul id="inst_list">

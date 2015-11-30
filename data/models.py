@@ -5,6 +5,10 @@ from django.core.validators import MinValueValidator
 class Institution(models.Model):
     name = models.CharField(max_length=50);
 
+    @property
+    def teams(self):
+        return Team.objects.filter(institution=self)
+
     def __str__(self):
         return self.name
 
@@ -15,6 +19,7 @@ class Team(models.Model):
 
     def __str__(self):
         return self.institution.__str__() + ' ' + self.name
+
 
 class Speaker(models.Model):
     name = models.CharField(max_length=100)
