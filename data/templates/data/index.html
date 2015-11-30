@@ -41,12 +41,18 @@
                             </tr>
                         {% endfor %}
                             <tr>
-                                <td><input id="t_name_{{ t.id }}" placeholder="Name"></td>
-                                <td><input id="t_sp1_{{ t.id }}" placeholder="Speaker 1"></td>
-                                <td><input id="t_sp2_{{ t.id }}" placeholder="Speaker 2"></td>
+                                <form action="#" class="create_team_form">
+                                <td><input id="t_name_{{ t.id }}" placeholder="Name" required></td>
+                                <td><input id="t_sp1_{{ t.id }}" placeholder="Speaker 1" required></td>
+                                <td><input id="t_sp2_{{ t.id }}" placeholder="Speaker 2" required></td>
                                 <td>
-                                    <button class="btn btn-sm btn-success" onclick="create_team({{ t.id }});">Create</button>
+                                    <button class="btn btn-sm btn-success"
+                                            onclick="create_team({{ t.id }});"
+                                            type="submit">
+                                        Create
+                                    </button>
                                 </td>
+                                </form>
                             </tr>
                     </table>
                 {% endfor %}

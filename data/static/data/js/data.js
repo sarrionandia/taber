@@ -8,6 +8,11 @@ $( document ).ready(function() {
     $('.institution_name').on("change", function() {
         update_institution(event.target.id.substring(11), this.value);
     });
+    $('.create_team_form').on('submit','.validateDontSubmit',function (e) {
+        e.preventDefault();
+    return false;
+})
+
 
 });
 

@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 from django.template import RequestContext, loader
-from models import Institution, Judge, Team
+from models import Institution, Judge, Team, Speaker
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -83,3 +83,17 @@ class DeleteTeamView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
         return super(DeleteTeamView, self).dispatch(*args, **kwargs)
+
+
+class CreateTeamView(View):
+    def post(self, request):
+
+        institution = Institution.objects.get(id=int(request.POST.get('institution')))
+
+        team = Team(name=request.POST.get('name'), institution=institution)
+        team.save()
+
+        speaker1 = Speaker(name=request.POST.get('speaker1'), team=team).save()
+        speaker1 = Speaker(name=request.POST.get('speaker2'), team=team).save()
+
+        return HttpResponse("OK")
