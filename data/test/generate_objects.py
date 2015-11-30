@@ -1,4 +1,5 @@
 from data.models import *
+from draw.models import *
 
 
 def valid_team():
