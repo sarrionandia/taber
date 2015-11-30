@@ -43,7 +43,6 @@ class TeamTestCase(TestCase):
 
     def testCreateTeamJSONResponse(self):
         institution = generate_objects.valid_institution()
-        teams_count = Team.objects.all().count()
         view = CreateTeamView()
         request = self.factory.post('/data/team/create/',
                                     data={
@@ -61,7 +60,6 @@ class TeamTestCase(TestCase):
 
     def testTeamCreatesDatabaseObjects(self):
         institution = generate_objects.valid_institution()
-        teams_count = Team.objects.all().count()
         view = CreateTeamView()
         request = self.factory.post('/data/team/create/',
                                     data={
