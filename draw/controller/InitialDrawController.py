@@ -7,9 +7,10 @@ class InitialDrawController():
     def initialDraw(self):
 
         teams = Team.objects.all().order_by('?')
+        num_debates = teams.count() / 4
         debates = []
 
-        for i in range(0,5):
+        for i in range(0,num_debates):
             debate = Debate()
             debate.round = 1
             debate.OG = teams[(i*4) +0]

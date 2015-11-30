@@ -7,7 +7,7 @@ from draw.controller.InitialDrawController import InitialDrawController
 
 class InitialDrawControllerTestCase(TestCase):
 
-    def testProducesCorrectNumberOfDebates(self):
+    def testProducesCorrectNumberOfDebatesFor20Teams(self):
 
         for i in range(0, 20):
             team = generate_objects.valid_team()
@@ -17,3 +17,13 @@ class InitialDrawControllerTestCase(TestCase):
         result = controller.initialDraw()
 
         self.assertEqual(5, len(result), "Didn't produce the correct number of debates: " + str(len(result)))
+
+    def testProducesCorrectNumberOfDebatesFor40Teams(self):
+        for i in range(0, 40):
+            team = generate_objects.valid_team()
+            team.save()
+
+        controller = InitialDrawController()
+        result = controller.initialDraw()
+
+        self.assertEqual(10, len(result), "Didn't produce the correct number of debates: " + str(len(result)))
