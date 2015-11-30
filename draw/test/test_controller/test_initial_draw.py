@@ -14,7 +14,7 @@ class InitialDrawControllerTestCase(TestCase):
             team.save()
 
         controller = InitialDrawController()
-        result = controller.initialDraw()
+        result = controller.initial_draw()
 
         self.assertEqual(5, len(result), "Didn't produce the correct number of debates: " + str(len(result)))
 
@@ -24,6 +24,6 @@ class InitialDrawControllerTestCase(TestCase):
             team.save()
 
         controller = InitialDrawController()
-        result = controller.initialDraw()
+        result = controller.initial_draw()
 
         self.assertEqual(10, len(result), "Didn't produce the correct number of debates: " + str(len(result)))

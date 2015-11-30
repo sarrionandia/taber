@@ -4,7 +4,7 @@ from draw.models import Debate
 
 class InitialDrawController():
 
-    def initialDraw(self):
+    def initial_draw(self):
 
         teams = Team.objects.all().order_by('?')
         num_debates = teams.count() / 4
@@ -20,7 +20,5 @@ class InitialDrawController():
 
             debate.save()
             debates.append(debate)
-
-
 
         return debates
