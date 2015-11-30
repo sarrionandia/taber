@@ -112,10 +112,10 @@ function delete_inst(inst_id) {
 function delete_team(team_id) {
         $.ajax({
         type: 'POST',
-        url: '/data/team/' + id + '/delete/',
+        url: '/data/team/' + team_id + '/delete/',
         data: {},
         success: function() {
-
+            alert("Deleted");
         },
         error: function(request, error) {
             alert("Server error: Couldn't delete team");

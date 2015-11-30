@@ -70,6 +70,7 @@ class UpdateInstitutionView(View):
     def dispatch(self, *args, **kwargs):
         return super(UpdateInstitutionView, self).dispatch(*args, **kwargs)
 
+
 class DeleteTeamView(View):
     def post(self, request, teamid):
         try:
