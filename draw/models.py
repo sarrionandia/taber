@@ -4,6 +4,13 @@ from django.db import models
 
 from data.models import Team, Venue, Judge
 
+class Tournament(models.Model):
+    round = models.IntegerField()
+
+    def clean(self):
+        if (Tournament.objects.count() > 0 and
+                self.id != Tournament.objects.get().id):
+            raise ValidationError("Only one tournament can be created")
 
 class Debate(models.Model):
     round = models.IntegerField(validators=[MinValueValidator(1)])
