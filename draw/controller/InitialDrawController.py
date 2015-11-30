@@ -9,6 +9,9 @@ class InitialDrawController():
         teams = Team.objects.all().order_by('?')
         num_teams = teams.count()
 
+        if num_teams < 4:
+            raise TournamentStateException("Number of teams must be 4 or more")
+
         if num_teams%4 != 0:
             raise TournamentStateException("Number of teams must be a multiple of 4")
 

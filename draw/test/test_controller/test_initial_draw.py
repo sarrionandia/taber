@@ -36,3 +36,9 @@ class InitialDrawControllerTestCase(TestCase):
         controller = InitialDrawController()
         with self.assertRaises(TournamentStateException):
             controller.initial_draw()
+
+    def testRaisesExceptionForZeroTeams(self):
+        controller = InitialDrawController()
+        with self.assertRaises(TournamentStateException):
+            controller.initial_draw()
+
