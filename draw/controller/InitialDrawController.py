@@ -1,5 +1,5 @@
-from data.models import Team, Judge
-from draw.models import Debate
+from data.models import Team
+from draw.models import Debate, TournamentStateException
 
 
 class InitialDrawController():
@@ -7,7 +7,12 @@ class InitialDrawController():
     def initial_draw(self):
 
         teams = Team.objects.all().order_by('?')
-        num_debates = teams.count() / 4
+        num_teams = teams.count()
+
+        if num_teams%4 != 0:
+            raise TournamentStateException("Number of teams must be a multiple of 4")
+
+        num_debates = num_teams / 4
         debates = []
 
         for i in range(0,num_debates):

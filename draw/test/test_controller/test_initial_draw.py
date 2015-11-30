@@ -3,6 +3,7 @@ from django.test import TestCase
 from data.models import Team, Judge, Venue
 from data.test import generate_objects
 from draw.controller.InitialDrawController import InitialDrawController
+from draw.models import TournamentStateException
 
 
 class InitialDrawControllerTestCase(TestCase):
@@ -26,3 +27,12 @@ class InitialDrawControllerTestCase(TestCase):
         result = controller.initial_draw()
 
         self.assertEqual(10, len(result), "Didn't produce the correct number of debates: " + str(len(result)))
+
+    def testRaisesExceptionForBadNumberOfTeams(self):
+        for i in range(0, 9):
+            team = generate_objects.valid_team()
+            team.save()
+
+        controller = InitialDrawController()
+        with self.assertRaises(TournamentStateException):
+            controller.initial_draw()
