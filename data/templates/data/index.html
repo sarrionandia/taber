@@ -26,7 +26,7 @@
                             <th>Team Name</th>
                             <th>Speaker 1</th>
                             <th>Speaker 2</th>
-                            <th>Delete</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         {% for t in i.teams %}
@@ -40,6 +40,14 @@
                                 </td>
                             </tr>
                         {% endfor %}
+                            <tr>
+                                <td><input id="t_name_{{ t.id }}" placeholder="Name"></td>
+                                <td><input id="t_sp1_{{ t.id }}" placeholder="Speaker 1"></td>
+                                <td><input id="t_sp2_{{ t.id }}" placeholder="Speaker 2"></td>
+                                <td>
+                                    <button class="btn btn-sm btn-success" onclick="create_team({{ t.id }});">Create</button>
+                                </td>
+                            </tr>
                     </table>
                 {% endfor %}
             </section>
