@@ -9,19 +9,11 @@ class InitialDrawControllerTestCase(TestCase):
 
     def testProducesCorrectNumberOfDebates(self):
 
-        for i in range(0, 19):
+        for i in range(0, 20):
             team = generate_objects.valid_team()
             team.save()
-
-        for i in range(0, 4):
-            venue = generate_objects.valid_venue()
-            venue.save()
-
-        for i in range(0, 4):
-            judge = generate_objects.valid_judge()
-            judge.save()
 
         controller = InitialDrawController()
         result = controller.initialDraw()
 
-        self.assertEqual(5, result.count(), "Didn't produce the correct number of debates")
+        self.assertEqual(5, len(result), "Didn't produce the correct number of debates: " + str(len(result)))

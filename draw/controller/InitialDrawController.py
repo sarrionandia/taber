@@ -9,7 +9,7 @@ class InitialDrawController():
         teams = Team.objects.all().order_by('?')
         debates = []
 
-        for i in range(0,4):
+        for i in range(0,5):
             debate = Debate()
             debate.round = 1
             debate.OG = teams[(i*4) +0]
