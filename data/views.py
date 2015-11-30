@@ -78,3 +78,7 @@ class DeleteTeamView(View):
         except ObjectDoesNotExist:
             raise Http404("Team does not exist")
         return HttpResponse("OK")
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(DeleteTeamView, self).dispatch(*args, **kwargs)
