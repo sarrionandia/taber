@@ -72,6 +72,9 @@ class UpdateInstitutionView(View):
 
 class DeleteTeamView(View):
     def post(self, request, teamid):
-        team = Team.objects.get(id=teamid)
-        team.delete()
+        try:
+            team = Team.objects.get(id=teamid)
+            team.delete()
+        except ObjectDoesNotExist:
+            raise Http404("Team does not exist")
         return HttpResponse("OK")

@@ -12,3 +12,8 @@ class TeamTestCase(TestCase):
         view.post(None, team_id)
 
         self.assertEqual(0, Team.objects.filter(id=team_id).count(), "Didn't delete team")
+
+    def testDeleteTeamDoesntExist(self):
+        view = DeleteTeamView()
+        with self.assertRaises(Http404):
+            view.post(None, 0)
