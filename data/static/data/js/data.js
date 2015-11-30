@@ -129,13 +129,14 @@ function delete_team(team_id) {
 }
 
 function create_team(inst_id) {
-    console.log(inst_id);
+    $('#t_form_' + inst_id + ' :input').prop("disabled", true);
     $.ajax({
     type: 'POST',
     url: '/data/team/create/',
     data: $('#t_form_' + inst_id).serialize(),
     success: function() {
-        alert("Created team")
+        $('#t_form_' + inst_id + ' :input').prop("disabled", false);
+        $('#t_form_' + inst_id).trigger('reset');
     },
     error: function(request, error) {
         alert("Couldn't create team");
