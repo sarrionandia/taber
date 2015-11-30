@@ -106,3 +106,7 @@ class CreateTeamView(View):
         }
 
         return HttpResponse(json.dumps(response))
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(CreateTeamView, self).dispatch(*args, **kwargs)
