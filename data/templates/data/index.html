@@ -50,9 +50,7 @@
                 <ul id="inst_list">
                     {% for i in institutions %}
                         <li class="row" id="inst_{{ i.id }}">
-                            <span class="institution_name col-sm-10">
-                            {{ i.name }}
-                            </span>
+                            <input class="institution_name col-sm-10" value="{{ i.name }}"/>
 
                             <div class="institution_controls col-sm-2">
                                 <button
