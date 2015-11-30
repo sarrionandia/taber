@@ -33,7 +33,7 @@ def valid_debate():
     debate.CG = valid_team()
     debate.OO = valid_team()
     debate.CO = valid_team()
-    debate.chair = valid_judge()
-    debate.venue = valid_venue()
+    # debate.chair = valid_judge()
+    # debate.venue = valid_venue()
     debate.round = 1
     return debate

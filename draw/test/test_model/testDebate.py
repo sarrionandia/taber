@@ -39,35 +39,6 @@ class DebateTestCase(TestCase):
         with self.assertRaises(ValidationError):
             debate.full_clean()
 
-    def test_duplicate_venue(self):
-        debate1 = generate_objects.valid_debate()
-        debate1.save()
-
-        debate2 = generate_objects.valid_debate()
-        debate2.venue = debate1.venue
-
-        with self.assertRaises(ValidationError):
-            debate2.full_clean()
-
-    def test_same_venue_in_multiple_rounds(self):
-        debate1 = generate_objects.valid_debate()
-        debate1.save()
-
-        debate2 = generate_objects.valid_debate()
-        debate2.round = debate1.round + 1
-        debate2.venue = debate1.venue
-
-        debate2.clean()
-
-    def test_duplicate_chair(self):
-        debate1 = generate_objects.valid_debate()
-        debate2 = generate_objects.valid_debate()
-        debate2.chair = debate1.chair
-
-        debate1.save()
-        with self.assertRaises(ValidationError):
-            debate2.full_clean()
-
     def test_positions(self):
         debate = generate_objects.valid_debate()
         positions = debate.positions()
