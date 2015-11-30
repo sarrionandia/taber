@@ -110,3 +110,21 @@ class CreateTeamView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
         return super(CreateTeamView, self).dispatch(*args, **kwargs)
+
+class UpdateTeamView(View):
+
+    def post(self, request, teamid):
+        team = Team.objects.get(id=teamid)
+        team.name = request.POST.get('name')
+
+        speaker1 = team.speakers[0]
+        speaker2 = team.speakers[1]
+
+        speaker1.name = request.POST.get('speaker1')
+        speaker2.name = request.POST.get('speaker2')
+
+        speaker1.save()
+        speaker2.save()
+
+        team.save()
+        return HttpResponse("OK")

@@ -3,9 +3,9 @@ import json
 from django.http import Http404
 from django.test import TestCase, RequestFactory
 
-from data.models import Team
+from data.models import Team, Speaker
 from data.test import generate_objects
-from data.views import DeleteTeamView, CreateTeamView
+from data.views import DeleteTeamView, CreateTeamView, UpdateTeamView
 
 
 class TeamTestCase(TestCase):
@@ -76,3 +76,27 @@ class TeamTestCase(TestCase):
         for speaker in team.speakers:
             self.assertTrue(speaker.name == response['speaker1'] or speaker.name == response['speaker2'],
                             "Speaker name didn't match created speaker")
+
+
+    def testUpdateTeamChangesDatabaseObject(self):
+        team = generate_objects.valid_team()
+        sp1 = Speaker(name='oldsp1', team=team)
+        sp2 = Speaker(name='oldsp2', team=team)
+        sp1.save()
+        sp2.save()
+
+        request = self.factory.post('/data/team/' + str(team.id) + '/update/',
+                                    data={
+                                        'name': 'New Name',
+                                        'speaker1' : 'newsp1',
+                                        'speaker2' : 'newsp2',
+                                        'institution' : team.institution.id
+                                    })
+        view = UpdateTeamView()
+        view.post(request, team.id)
+
+        team.refresh_from_db()
+
+        self.assertEqual("New Name", team.name, "Team name wasn't updated")
+        for speaker in team.speakers:
+            self.assertTrue(speaker.name == 'newsp1' or speaker.name == 'newsp2', "Speaker name wasn't updated: " + speaker.name)
