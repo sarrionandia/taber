@@ -4,6 +4,9 @@ from django.db import models
 
 from data.models import Team, Venue, Judge
 
+class TournamentStateException(Exception):
+    pass
+
 class Tournament(models.Model):
     round = models.IntegerField()
 
