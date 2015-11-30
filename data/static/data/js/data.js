@@ -4,8 +4,15 @@ $( document ).ready(function() {
         $('#inst_create').attr('disabled', ($('#inst_name_input').val().length <= 0));
     });
     $('#inst_create').on("click", create_institution);
+    $('.institution_name').on("change", function() {
+       update_institution(event.target.id.substring(11), this.value);
+    });
 
 });
+
+function update_institution(id, name) {
+    alert(id);
+}
 
 function create_institution() {
     $('#inst_create').attr('disabled', true);
