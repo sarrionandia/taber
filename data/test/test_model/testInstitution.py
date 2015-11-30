@@ -12,7 +12,6 @@ class InstitutionTestCase(TestCase):
         actual = Institution.objects.get(name='University of Whoville').__str__()
         self.assertEqual(expected, actual)
 
-
     def test_teams_query(self):
         team1 = Team(name="A", institution=self.institution)
         team2 = Team(name="B", institution=self.institution)
