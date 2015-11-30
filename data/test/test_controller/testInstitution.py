@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.test import TestCase
 from data.test import generate_objects
-from data.views import DeleteInstitutionView, CreateInstitutionView
+from data.views import DeleteInstitutionView, CreateInstitutionView, UpdateInstitutionView
 from data.models import Institution
 from django.test.client import RequestFactory
 import json
@@ -45,3 +45,13 @@ class InstitutionTestCase(TestCase):
         createdInstitution = Institution.objects.get(id=int(response['id']));
         self.assertEqual(createdInstitution.name, 'New University', "Didn't save the university with the correct name")
 
+    def testInstitutionUpdates(self):
+        institution = generate_objects.valid_institution()
+        view = UpdateInstitutionView()
+        request = self.factory.post('/data/institution/' + str(institution.id) + '/update/',
+                                    data = {'name' : 'Updated Name'})
+
+        view.post(request, institution.id)
+
+        institution.refresh_from_db()
+        self.assertEqual('Updated Name', institution.name, "Did not update the name of the institution")

@@ -46,3 +46,17 @@ class CreateInstitutionView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
         return super(CreateInstitutionView, self).dispatch(*args, **kwargs)
+
+
+class UpdateInstitutionView(View):
+
+    def post(self, request, institutionid):
+        institution = Institution.objects.get(id=institutionid)
+        institution.name = request.POST.get('name')
+        institution.save()
+
+        return HttpResponse("ok");
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, *args, **kwargs):
+        return super(UpdateInstitutionView, self).dispatch(*args, **kwargs)
