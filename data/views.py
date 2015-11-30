@@ -93,7 +93,16 @@ class CreateTeamView(View):
         team = Team(name=request.POST.get('name'), institution=institution)
         team.save()
 
-        speaker1 = Speaker(name=request.POST.get('speaker1'), team=team).save()
-        speaker1 = Speaker(name=request.POST.get('speaker2'), team=team).save()
+        speaker1 = Speaker(name=request.POST.get('speaker1'), team=team)
+        speaker1.save()
+        speaker2 = Speaker(name=request.POST.get('speaker2'), team=team)
+        speaker2.save()
 
-        return HttpResponse("OK")
+        response = {
+            'id' : team.id,
+            'name' : team.name,
+            'speaker1' : speaker1.name,
+            'speaker2' : speaker2.name
+        }
+
+        return HttpResponse(json.dumps(response))
