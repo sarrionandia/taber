@@ -1,6 +1,7 @@
 $( document ).ready(function() {
     $('[data-toggle="tooltip"]').tooltip()
-    $('#inst_name_input').on("keyup", function(){
+    $('#inst_name_input').on("keyup", function(e){
+        if (e.keyCode == 13){create_institution();}
         $('#inst_create').attr('disabled', ($('#inst_name_input').val().length <= 0));
     });
     $('#inst_create').on("click", create_institution);
@@ -69,6 +70,7 @@ function create_institution() {
             );
             $('#inst_name_input').val('');
             $('#inst_name_input').attr('disabled', false);
+            $('#inst_name_input').focus();
 
 
         })
