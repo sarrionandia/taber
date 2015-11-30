@@ -6,7 +6,7 @@ $( document ).ready(function() {
     });
     $('#inst_create').on("click", create_institution);
     $('.institution_name').on("change", function() {
-       update_institution(event.target.id.substring(11), this.value);
+        update_institution(event.target.id.substring(11), this.value);
     });
 
 });
@@ -46,10 +46,11 @@ function create_institution() {
                     .addClass('row')
                     .attr('id', 'inst_'+ inst)
                     .append(
-                        $('<span/>')
+                        $('<input/>')
                             .addClass('col-sm-10')
                             .addClass('institution_name')
-                            .html(name)
+                            .attr('value', name)
+                            .attr('id', 'inst_input_' + inst)
                     )
                     .append(
                         $('<div/>')
@@ -68,11 +69,13 @@ function create_institution() {
                             )
                     )
             );
+
             $('#inst_name_input').val('');
             $('#inst_name_input').attr('disabled', false);
             $('#inst_name_input').focus();
-
-
+            $('.institution_name').on("change", function() {
+                update_institution(event.target.id.substring(11), this.value);
+            });
         })
 
         .fail(function(){
