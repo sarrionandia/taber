@@ -8,7 +8,6 @@ from draw.controller.InitialDrawController import InitialDrawController
 class InitialDrawControllerTestCase(TestCase):
 
     def testProducesCorrectNumberOfDebatesFor20Teams(self):
-
         for i in range(0, 20):
             team = generate_objects.valid_team()
             team.save()
