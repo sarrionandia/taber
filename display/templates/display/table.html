@@ -1,6 +1,16 @@
 {% extends "root.html" %}
 
+{% load num_range %}
+
 {% block content %}
+
+    <ul class="nav nav-pills">
+    {% num_range max_round as all_rounds %}
+
+        {% for r in all_rounds %}
+        <li role="presentation"><a href="/display/table/{{ r|add:1 }}/">Round {{ r|add:1 }}</a></li>
+        {% endfor %}
+    </ul>
 
     <h1>Table for Round {{ round }}</h1>
 
@@ -15,14 +25,12 @@
         </thead>
 
         {% for d in debates %}
-
             <tr>
                 <td>{{ d.OG }}</td>
                 <td>{{ d.OO }}</td>
                 <td>{{ d.CG }}</td>
                 <td>{{ d.CO }}</td>
             </tr>
-
         {% endfor %}
     </table>
 
