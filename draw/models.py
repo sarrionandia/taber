@@ -15,6 +15,13 @@ class Tournament(models.Model):
                 self.id != Tournament.objects.get().id):
             raise ValidationError("Only one tournament can be created")
 
+    @staticmethod
+    def instance():
+        if Tournament.objects.all().count() > 0:
+            return Tournament.objects.first()
+        else:
+            return Tournament(round=0)
+
 class Debate(models.Model):
     round = models.IntegerField(validators=[MinValueValidator(1)])
     OG = models.ForeignKey(Team, related_name='OG')

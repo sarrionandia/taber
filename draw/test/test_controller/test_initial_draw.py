@@ -3,7 +3,7 @@ from django.test import TestCase
 from data.models import Team, Judge, Venue
 from data.test import generate_objects
 from draw.controller.InitialDrawController import InitialDrawController
-from draw.models import TournamentStateException
+from draw.models import TournamentStateException, Tournament
 
 
 class InitialDrawControllerTestCase(TestCase):
@@ -42,3 +42,17 @@ class InitialDrawControllerTestCase(TestCase):
         with self.assertRaises(TournamentStateException):
             controller.initial_draw()
 
+
+    def testRaisesExceptionIfNotRoundZero(self):
+        tournament = Tournament.instance()
+        tournament.round = 1
+        tournament.save()
+
+        for i in range(0, 20):
+            team = generate_objects.valid_team()
+            team.save()
+
+
+        with self.assertRaises(TournamentStateException):
+            controller = InitialDrawController()
+            controller.initial_draw()

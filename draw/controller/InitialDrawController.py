@@ -1,10 +1,14 @@
 from data.models import Team
-from draw.models import Debate, TournamentStateException
+from draw.models import Debate, TournamentStateException, Tournament
 
 
 class InitialDrawController():
 
     def initial_draw(self):
+
+        tournament = Tournament.instance()
+        if tournament.round != 0:
+            raise TournamentStateException("Round must be 0 for initial draw to happen")
 
         teams = Team.objects.all().order_by('?')
         num_teams = teams.count()
@@ -28,5 +32,4 @@ class InitialDrawController():
 
             debate.save()
             debates.append(debate)
-
         return debates
