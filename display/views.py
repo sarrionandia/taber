@@ -10,8 +10,9 @@ class DrawTableView(View):
     def get(self, request, round):
         template = loader.get_template('display/table.html')
         context = RequestContext(request, {
-            'round' : round,
+            'display_round' : int(round),
             'debates' : Debate.objects.all().filter(round=round),
-            'max_round' : Tournament.instance().round
+            'max_round' : Tournament.instance().round,
+            'all_rounds' : range(1, Tournament.instance().round+1)
         })
         return HttpResponse(template.render(context))

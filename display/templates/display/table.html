@@ -1,18 +1,14 @@
 {% extends "root.html" %}
 
-{% load num_range %}
-
 {% block content %}
 
     <ul class="nav nav-pills">
-    {% num_range max_round as all_rounds %}
-
         {% for r in all_rounds %}
-        <li role="presentation"><a href="/display/table/{{ r|add:1 }}/">Round {{ r|add:1 }}</a></li>
+                <li role="presentation" {% if r == display_round %}class="active"{% endif %}><a href="/display/table/{{ r }}/">Round {{ r }}</a></li>
         {% endfor %}
     </ul>
 
-    <h1>Table for Round {{ round }}</h1>
+    <h1>Table for Round {{ display_round }}</h1>
 
     <table class="table table-bordered">
         <thead>
