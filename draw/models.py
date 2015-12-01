@@ -44,9 +44,7 @@ class Debate(models.Model):
         if (len(self.positions().values()) > (len(set(self.positions().values())))):
             raise ValidationError("A team can't be in two positions in one room")
 
-        debates = Debate.objects.all()
-
+        debates = Debate.objects.all().filter(round=self.round)
         for debate in debates:
-            if (debate != self):
-                if any(x in debate.positions().values() for x in self.positions().values()):
-                    raise ValidationError("A team can't be in two debates in the same round")
+            if any(x in debate.positions().values() for x in self.positions().values()):
+                raise ValidationError("A team can't be in two debates in the same round")

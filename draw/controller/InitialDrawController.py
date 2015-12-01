@@ -1,3 +1,5 @@
+from random import shuffle
+
 from data.models import Team
 from draw.models import Debate, TournamentStateException, Tournament
 
@@ -10,8 +12,9 @@ class InitialDrawController():
         if tournament.round != 0:
             raise TournamentStateException("Round must be 0 for initial draw to happen")
 
-        teams = Team.objects.all().order_by('?')
-        num_teams = teams.count()
+        teams = list(Team.objects.all())
+        shuffle(teams)
+        num_teams = len(teams)
 
         if num_teams < 4:
             raise TournamentStateException("Number of teams must be 4 or more")
@@ -30,6 +33,7 @@ class InitialDrawController():
             debate.CG = teams[(i*4) +2]
             debate.CO = teams[(i*4) +3]
 
+            debate.full_clean()
             debate.save()
             debates.append(debate)
 
