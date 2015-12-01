@@ -10,6 +10,8 @@
 
     <h1>Table for Round {{ display_round }}</h1>
 
+    {% if display_round <= max_round %}
+
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -29,5 +31,13 @@
             </tr>
         {% endfor %}
     </table>
+
+    {% else %}
+
+    <div class="alert alert-danger">
+        There has not been a draw for Round {{ display_round }} yet.
+    </div>
+
+    {% endif %}
 
 {% endblock %}
