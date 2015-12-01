@@ -5,6 +5,7 @@ from django.views.generic import View
 
 from data.models import Team
 from draw.controller.InitialDrawController import InitialDrawController
+from draw.models import Tournament
 
 
 class DrawControl(View):
@@ -17,6 +18,7 @@ class DrawControl(View):
             'teams_count' : Team.objects.all().count(),
             'teams_ok' : (team_count % 4 == 0) and (team_count >= 4),
             'rooms' : team_count / 4,
+            'tournament' : Tournament.instance()
         })
         return HttpResponse(template.render(context))
 

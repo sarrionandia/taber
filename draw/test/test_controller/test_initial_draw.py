@@ -56,3 +56,15 @@ class InitialDrawControllerTestCase(TestCase):
         with self.assertRaises(TournamentStateException):
             controller = InitialDrawController()
             controller.initial_draw()
+
+    def testChangesRoundNumber(self):
+        round = Tournament.instance().round
+
+        for i in range(0, 20):
+            team = generate_objects.valid_team()
+            team.save()
+
+        controller = InitialDrawController()
+        controller.initial_draw()
+
+        self.assertEqual(round+1, Tournament.instance().round, "Didn't increment the round number")

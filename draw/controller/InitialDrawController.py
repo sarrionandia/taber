@@ -32,4 +32,8 @@ class InitialDrawController():
 
             debate.save()
             debates.append(debate)
+
+        tournament.round = 1
+        tournament.save()
+
         return debates
