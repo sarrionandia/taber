@@ -30,3 +30,17 @@ class ResultTestCase(TestCase):
         result.og = 4
         with self.assertRaises(ValidationError):
             result.full_clean()
+
+    def testAllPositionsMustBeAwarded(self):
+        result = generate_objects.valid_result_with_debate()
+        result.og = 3
+        result.co = 3
+        with self.assertRaises(ValidationError):
+            result.full_clean()
+
+        result = generate_objects.valid_result_with_debate()
+        result.og = 2
+        result.oo = 2
+        with self.assertRaises(ValidationError):
+            result.full_clean()
+
