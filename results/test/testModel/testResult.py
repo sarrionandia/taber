@@ -9,15 +9,18 @@ class ResultTestCase(TestCase):
 
     def testMinSpeakerScore(self):
         result = generate_objects.valid_result_with_debate()
-
         result.ogsp2 = -2
         with self.assertRaises(ValidationError):
             result.full_clean()
 
     def testMaxSpeakerScore(self):
         result = generate_objects.valid_result_with_debate()
-
         result.ogsp1 = 101
+        with self.assertRaises(ValidationError):
+            result.full_clean()
 
+    def testMinTeamScore(self):
+        result = generate_objects.valid_result_with_debate()
+        result.og = -1
         with self.assertRaises(ValidationError):
             result.full_clean()
