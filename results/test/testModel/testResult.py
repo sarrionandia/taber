@@ -55,3 +55,13 @@ class ResultTestCase(TestCase):
 
         with self.assertRaises(ValidationError):
             result.full_clean()
+
+    def testTotalSpeakerScore(self):
+        result = generate_objects.valid_result_with_debate()
+        total_speaks = result.total_speaks()
+
+        self.assertEqual(total_speaks['og'], result.ogsp1 + result.ogsp2)
+        self.assertEqual(total_speaks['oo'], result.oosp1 + result.oosp2)
+        self.assertEqual(total_speaks['cg'], result.cgsp1 + result.cgsp2)
+        self.assertEqual(total_speaks['co'], result.cosp1 + result.cosp2)
+

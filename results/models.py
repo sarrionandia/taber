@@ -66,3 +66,5 @@ class Result(models.Model):
             raise ValidationError("Team in 1st must have highest speaker score")
 
 
+
+
