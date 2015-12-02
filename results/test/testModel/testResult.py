@@ -44,3 +44,14 @@ class ResultTestCase(TestCase):
         with self.assertRaises(ValidationError):
             result.full_clean()
 
+    def testSpeakerScoreMustBeConsistentWithTeamScore(self):
+        result = generate_objects.valid_result_with_debate()
+        result.ogsp1=1
+        result.ogsp2=1
+        result.og = 3
+        result.oo = 2
+        result.cg = 1
+        result.co = 0
+
+        with self.assertRaises(ValidationError):
+            result.full_clean()
