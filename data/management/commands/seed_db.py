@@ -13,6 +13,7 @@ class Command(NoArgsCommand):
         Institution.objects.all().delete()
         Debate.objects.all().delete()
         Tournament.objects.all().delete()
+        Venue.objects.all().delete()
 
 
         for i in institutions:
