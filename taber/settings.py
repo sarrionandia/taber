@@ -40,7 +40,8 @@ INSTALLED_APPS = (
     'data',
     'taber',
     'draw',
-    'display'
+    'display',
+    'results'
 )
 
 MIDDLEWARE_CLASSES = (
