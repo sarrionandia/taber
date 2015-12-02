@@ -10,6 +10,7 @@ Taberystwyth: Open source, testable tabbing program.
 
 # Running
 * Install the requirements
+* Set up the database with `./manage.py migrate`
 * From inside the project directory, run `./manage.py runserver`
 
 # Testing
