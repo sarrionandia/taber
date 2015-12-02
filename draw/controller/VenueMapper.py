@@ -5,7 +5,6 @@ from draw.models import Debate, TournamentStateException
 class VenueMapper():
 
     def map_venues(self, round):
-
         debates = list(Debate.objects.all().filter(round=round))
         venues = list(Venue.objects.all())
 
@@ -15,4 +14,3 @@ class VenueMapper():
         for i in range(0, len(debates)):
             debates[i].venue = venues[i]
             debates[i].save()
-            
