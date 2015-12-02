@@ -38,6 +38,9 @@ class Debate(models.Model):
             'CO' : self.CO
                  }
 
+    def __str__(self):
+        return 'R' + str(self.round) + "<" + self.venue.name + ">"
+
     def clean(self):
         self.validate_team_unique()
 
