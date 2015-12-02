@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 from django.template import RequestContext, loader
-from models import Institution, Judge, Team, Speaker, Venue
+from models import Institution, Judge, Team, Venue
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -92,18 +92,15 @@ class CreateTeamView(View):
         institution = Institution.objects.get(id=int(request.POST.get('institution')))
 
         team = Team(name=request.POST.get('name'), institution=institution)
+        team.speaker1 = request.POST.get('speaker1')
+        team.speaker2 = request.POST.get('speaker2')
         team.save()
-
-        speaker1 = Speaker(name=request.POST.get('speaker1'), team=team)
-        speaker1.save()
-        speaker2 = Speaker(name=request.POST.get('speaker2'), team=team)
-        speaker2.save()
 
         response = {
             'id' : team.id,
             'name' : team.name,
-            'speaker1' : speaker1.name,
-            'speaker2' : speaker2.name
+            'speaker1' : team.speaker1,
+            'speaker2' : team.speaker2
         }
 
         return HttpResponse(json.dumps(response))
@@ -119,14 +116,8 @@ class UpdateTeamView(View):
             team = Team.objects.get(id=teamid)
             team.name = request.POST.get('name')
 
-            speaker1 = team.speakers[0]
-            speaker2 = team.speakers[1]
-
-            speaker1.name = request.POST.get('speaker1')
-            speaker2.name = request.POST.get('speaker2')
-
-            speaker1.save()
-            speaker2.save()
+            team.speaker1 = request.POST.get('speaker1')
+            team.speaker2 = request.POST.get('speaker2')
 
             team.save()
 

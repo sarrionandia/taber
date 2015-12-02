@@ -26,17 +26,12 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Speaker',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(max_length=100)),
-            ],
-        ),
-        migrations.CreateModel(
             name='Team',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=50)),
+                ('Speaker 1', models.CharField(max_length=50)),
+                ('Speaker 2', models.CharField(max_length=50)),
                 ('institution', models.ForeignKey(to='data.Institution')),
             ],
         ),
@@ -46,10 +41,5 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=50)),
             ],
-        ),
-        migrations.AddField(
-            model_name='speaker',
-            name='team',
-            field=models.ForeignKey(to='data.Team'),
         ),
     ]

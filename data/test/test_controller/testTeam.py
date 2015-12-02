@@ -3,7 +3,7 @@ import json
 from django.http import Http404
 from django.test import TestCase, RequestFactory
 
-from data.models import Team, Speaker
+from data.models import Team
 from data.test import generate_objects
 from data.views import DeleteTeamView, CreateTeamView, UpdateTeamView
 
@@ -74,16 +74,14 @@ class TeamTestCase(TestCase):
         self.assertEqual(response['name'], team.name, "Team name didn't match created team")
 
         for speaker in team.speakers:
-            self.assertTrue(speaker.name == response['speaker1'] or speaker.name == response['speaker2'],
+            self.assertTrue(speaker == response['speaker1'] or speaker == response['speaker2'],
                             "Speaker name didn't match created speaker")
 
 
     def testUpdateTeamChangesDatabaseObject(self):
         team = generate_objects.valid_team()
-        sp1 = Speaker(name='oldsp1', team=team)
-        sp2 = Speaker(name='oldsp2', team=team)
-        sp1.save()
-        sp2.save()
+        team.speaker1 = 'oldsp1'
+        team.speaker2 = 'oldsp2'
 
         request = self.factory.post('/data/team/' + str(team.id) + '/update/',
                                     data={
@@ -98,9 +96,8 @@ class TeamTestCase(TestCase):
         team.refresh_from_db()
 
         self.assertEqual("New Name", team.name, "Team name wasn't updated")
-        for speaker in team.speakers:
-            self.assertTrue(speaker.name == 'newsp1' or speaker.name == 'newsp2', "Speaker name wasn't updated: " + speaker.name)
-
+        self.assertEqual("newsp1", team.speaker1, "Speaker 1 was not updated")
+        self.assertEqual("newsp2", team.speaker2, "Speaker 2 was not updated")
 
     def testUpdateTeamWithTeamDoesntExist(self):
         view = UpdateTeamView()

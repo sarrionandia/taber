@@ -1,4 +1,4 @@
-from data.models import Institution, Judge, Team, Speaker, Venue
+from data.models import Institution, Judge, Team, Venue
 from django.core.management.base import NoArgsCommand
 from random import randint
 
@@ -9,7 +9,6 @@ class Command(NoArgsCommand):
     def handle_noargs(self, **options):
 
         Judge.objects.all().delete()
-        Speaker.objects.all().delete()
         Team.objects.all().delete()
         Institution.objects.all().delete()
         Debate.objects.all().delete()
@@ -31,13 +30,9 @@ class Command(NoArgsCommand):
                 team = Team()
                 team.institution = institution
                 team.name = str(i)
+                team.speaker1 = self.random_name()
+                team.speaker2 = self.random_name()
                 team.save()
-
-                speaker1 = Speaker(name=self.random_name(), team=team)
-                speaker1.save()
-
-                speaker2 = Speaker(name=self.random_name(), team=team)
-                speaker2.save()
 
         for v in venues:
             venue = Venue(name=v)
