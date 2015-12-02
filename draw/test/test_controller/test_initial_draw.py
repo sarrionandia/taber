@@ -1,6 +1,5 @@
 from django.test import TestCase
 
-from data.models import Team, Judge, Venue
 from data.test import generate_objects
 from draw.controller.InitialDrawController import InitialDrawController
 from draw.models import TournamentStateException, Tournament
