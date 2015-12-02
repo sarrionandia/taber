@@ -24,3 +24,9 @@ class ResultTestCase(TestCase):
         result.og = -1
         with self.assertRaises(ValidationError):
             result.full_clean()
+
+    def testMaxTeamScore(self):
+        result = generate_objects.valid_result_with_debate()
+        result.og = 4
+        with self.assertRaises(ValidationError):
+            result.full_clean()
