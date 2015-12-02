@@ -28,6 +28,7 @@ class Debate(models.Model):
     OO = models.ForeignKey(Team, related_name='OO')
     CG = models.ForeignKey(Team, related_name='CG')
     CO = models.ForeignKey(Team, related_name='CO')
+    venue = models.ForeignKey(Venue, null=True, blank=True)
 
     def positions(self):
         return {
