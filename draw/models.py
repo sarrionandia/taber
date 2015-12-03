@@ -34,7 +34,7 @@ class Debate(models.Model):
 
     @property
     def result(self):
-        return results.models.Result.objects.get(debate=self)
+        return self.results.first()
 
     def positions(self):
         return {

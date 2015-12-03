@@ -6,7 +6,7 @@ from draw.models import Debate
 
 
 class Result(models.Model):
-    debate = models.ForeignKey(Debate)
+    debate = models.ForeignKey(Debate, related_name='results')
 
     ogsp1 = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
     ogsp2 = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(100)])
