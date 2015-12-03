@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^data/', include('data.urls')),
     url(r'^draw/', include('draw.urls')),
-    url(r'^display/', include('display.urls'))
+    url(r'^display/', include('display.urls')),
+    url(r'^results/', include('results.urls'))
 ]
