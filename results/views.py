@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.template import loader, RequestContext
 from django.views.generic import View
+
+from draw.models import Debate
 from forms import ResultForm
 
 
@@ -11,6 +13,7 @@ class EditResultsView(View):
         form = ResultForm()
         context = RequestContext(request, {
             'form' : form,
+            'debate' : Debate.objects.get(id=debateid),
         })
         return HttpResponse(template.render(context))
 
