@@ -64,7 +64,3 @@ class Result(models.Model):
             raise ValidationError("Team in 2nd must have second highest speaker score")
         if self.positions()[speaks_order[3]] != 3:
             raise ValidationError("Team in 1st must have highest speaker score")
-
-
-
-
