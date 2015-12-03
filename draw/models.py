@@ -2,7 +2,9 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
 from django.db import models
 
+import results
 from data.models import Team, Venue, Judge
+
 
 class TournamentStateException(Exception):
     pass
@@ -29,6 +31,10 @@ class Debate(models.Model):
     CG = models.ForeignKey(Team, related_name='CG')
     CO = models.ForeignKey(Team, related_name='CO')
     venue = models.ForeignKey(Venue, null=True, blank=True)
+
+    @property
+    def result(self):
+        return results.models.Result.objects.get(debate=self)
 
     def positions(self):
         return {

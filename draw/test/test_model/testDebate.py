@@ -47,4 +47,7 @@ class DebateTestCase(TestCase):
         self.assertEqual(debate.CG, positions['CG'])
         self.assertEqual(debate.CO, positions['CO'])
 
-
+    def test_gets_result_that_exists(self):
+        result = generate_objects.valid_result_with_debate()
+        debate = result.debate
+        self.assertEqual(debate.result, result, "Didn't return the result for the debate")

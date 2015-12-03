@@ -21,7 +21,8 @@ class ResultForm(ModelForm):
             'type' : 'number',
             'class' : 'form-control',
             'min' : 0,
-            'max' : 100
+            'max' : 100,
+            'placeholder' : '1-100'
     }
 
         widgets = {
