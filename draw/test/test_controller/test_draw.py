@@ -10,3 +10,8 @@ class DrawControllerTestCase(TestCase):
         teams = []
         controller = DrawController()
         self.assertEqual(0, len(controller.create_pools(teams)))
+
+    def testCreatePoolsWithNone(self):
+        teams = None
+        controller = DrawController()
+        self.assertEqual(0, len(controller.create_pools(teams)))
