@@ -34,7 +34,10 @@ class Debate(models.Model):
 
     @property
     def result(self):
-        return self.results.first()
+        if self.results.count() > 0:
+            return self.results.first()
+        else:
+            return results.models.Result(debate=self)
 
     def positions(self):
         return {

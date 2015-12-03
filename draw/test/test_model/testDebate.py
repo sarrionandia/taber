@@ -51,3 +51,7 @@ class DebateTestCase(TestCase):
         result = generate_objects.valid_result_with_debate()
         debate = result.debate
         self.assertEqual(debate.result, result, "Didn't return the result for the debate")
+
+    def test_gets_empty_result_withouht_existing_result(self):
+        debate = generate_objects.valid_debate()
+        self.assertIsNotNone(debate.result, "Didn't return an empty result when there is no existing result")
