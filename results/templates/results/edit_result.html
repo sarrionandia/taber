@@ -59,6 +59,11 @@
 
         {{ form.debate }}
         {% csrf_token %}
-        <button class="btn btn-info" type="submit">Save Result</button>
+        <button id="btn_save_result" class="btn btn-info" type="submit" disabled>Save Result</button>
     </form>
+
+        <div class="alert alert-danger" style="margin-top: 15px;" id="err_total_speaks">
+        Draws are not permitted: All teams must have a unique total score before saving the result.
+    </div>
+
 {% endblock %}

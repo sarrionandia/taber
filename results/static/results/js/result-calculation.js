@@ -11,7 +11,6 @@ $(document).ready(function () {
 });
 
 function update_total_speaks(){
-    console.log("Updating");
     var og_speaks = parseInt($('#id_ogsp1').val()) + parseInt($('#id_ogsp2').val());
     var oo_speaks = parseInt($('#id_oosp1').val()) + parseInt($('#id_oosp2').val());
     var cg_speaks = parseInt($('#id_cgsp1').val()) + parseInt($('#id_cgsp2').val());
@@ -20,4 +19,21 @@ function update_total_speaks(){
     $('#total_oo').html(oo_speaks);
     $('#total_cg').html(cg_speaks);
     $('#total_co').html(co_speaks);
+
+    if ((og_speaks != oo_speaks)
+    && (og_speaks != cg_speaks)
+    && (og_speaks != co_speaks)
+    && (oo_speaks != cg_speaks)
+    && (oo_speaks != co_speaks)
+    && (cg_speaks != co_speaks)){
+        console.log("All speaker totals are unique");
+        $('#err_total_speaks').hide();
+        $('#btn_save_result').attr('disabled', false);
+    }
+    else {
+        console.log("Speaker totals are not unique");
+        $('#err_total_speaks').show();
+        $('#btn_save_result').attr('disabled', true);
+    }
+
 }
