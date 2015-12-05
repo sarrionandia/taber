@@ -9,11 +9,12 @@ from forms import ResultForm
 class EditResultsView(View):
 
     def get(self, request, debateid):
+        debate = Debate.objects.get(id=debateid)
         template = loader.get_template('results/edit_result.html')
-        form = ResultForm()
+        form = ResultForm(initial={'debate': debateid})
         context = RequestContext(request, {
             'form' : form,
-            'debate' : Debate.objects.get(id=debateid),
+            'debate' : debate,
         })
         return HttpResponse(template.render(context))
 

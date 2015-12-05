@@ -34,4 +34,5 @@ class ResultForm(ModelForm):
             "cgsp2":forms.TextInput(attrs=speak_attrs.copy()),
             "cosp1":forms.TextInput(attrs=speak_attrs.copy()),
             "cosp2":forms.TextInput(attrs=speak_attrs.copy()),
+            "debate" : forms.HiddenInput()
         }
