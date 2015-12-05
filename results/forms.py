@@ -22,7 +22,8 @@ class ResultForm(ModelForm):
             'class' : 'form-control',
             'min' : 0,
             'max' : 100,
-            'placeholder' : '1-100'
+            'placeholder' : '1-100',
+            'required' : 'required',
     }
 
         widgets = {
