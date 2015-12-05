@@ -1,5 +1,9 @@
 {% extends "root.html" %}
 
+{% block head_extra %}
+    <script type="text/javascript" src="/static/results/js/result-calculation.js"></script>
+{% endblock %}
+
 {% block content %}
     <h1>Result for {{ debate }}</h1>
 
@@ -14,6 +18,7 @@
                     <label for="ogsp2" class="control-label">{{ debate.OG.speaker2 }}:</label>
                     {{ form.ogsp2 }}
                 </div>
+                <p>Total: <strong id="total_og"></strong> Points</p>
             </div>
             <div class="team-section oo-section col-sm-6">
                 <h3>{{ debate.OO }}</h3>
@@ -23,6 +28,7 @@
                     <label for="oosp2" class="control-label">{{ debate.OO.speaker2 }}:</label>
                     {{ form.oosp2 }}
                 </div>
+                <p>Total: <strong id="total_oo"></strong> Points</p>
             </div>
         </div>
 
@@ -35,6 +41,8 @@
                     <label for="cgsp2" class="control-label">{{ debate.CG.speaker2 }}:</label>
                     {{ form.cgsp2 }}
                 </div>
+                <p>Total: <strong id="total_cg"></strong> Points</p>
+
             </div>
             <div class="team-section co-section col-sm-6">
                 <h3>CO: {{ debate.CO }}</h3>
@@ -44,6 +52,8 @@
                     <label for="cosp2" class="control-label">{{ debate.CO.speaker2 }}:</label>
                     {{ form.cosp2 }}
                 </div>
+                <p>Total: <strong id="total_co"></strong> Points</p>
+
             </div>
         </div>
 
