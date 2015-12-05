@@ -3,48 +3,52 @@
 {% block content %}
     <h1>Result for {{ debate }}</h1>
 
-    <div class="row">
-        <div class="team-section og-section col-sm-6">
-            <h3>OG: {{ debate.OG }}</h3>
-            <div class="form-group">
-                <label for="ogsp1" class="control-label">{{ debate.OG.speaker1 }}:</label>
-                {{ form.ogsp1 }}
-                <label for="ogsp2" class="control-label">{{ debate.OG.speaker2 }}:</label>
-                {{ form.ogsp2 }}
-            </div>
-        </div>
-        <div class="team-section oo-section col-sm-6">
-            <h3>{{ debate.OO }}</h3>
-            <div class="form-group">
-                <label for="oosp1" class="control-label">{{ debate.OO.speaker1 }}:</label>
-                {{ form.oosp1 }}
-                <label for="oosp2" class="control-label">{{ debate.OO.speaker2 }}:</label>
-                {{ form.oosp2 }}
-            </div>
-        </div>
-    </div>
+    <form method="post" action="#">
 
-    <div class="row">
-        <div class="team-section cg-section col-sm-6">
-            <h3>CG: {{ debate.CG }}</h3>
-            <div class="form-group">
-                <label for="cgsp1" class="control-label">{{ debate.CG.speaker1 }}:</label>
-                {{ form.cgsp1 }}
-                <label for="cgsp2" class="control-label">{{ debate.CG.speaker2 }}:</label>
-                {{ form.cgsp2 }}
+        <div class="row">
+            <div class="team-section og-section col-sm-6">
+                <h3>OG: {{ debate.OG }}</h3>
+                <div class="form-group">
+                    <label for="ogsp1" class="control-label">{{ debate.OG.speaker1 }}:</label>
+                    {{ form.ogsp1 }}
+                    <label for="ogsp2" class="control-label">{{ debate.OG.speaker2 }}:</label>
+                    {{ form.ogsp2 }}
+                </div>
+            </div>
+            <div class="team-section oo-section col-sm-6">
+                <h3>{{ debate.OO }}</h3>
+                <div class="form-group">
+                    <label for="oosp1" class="control-label">{{ debate.OO.speaker1 }}:</label>
+                    {{ form.oosp1 }}
+                    <label for="oosp2" class="control-label">{{ debate.OO.speaker2 }}:</label>
+                    {{ form.oosp2 }}
+                </div>
             </div>
         </div>
-        <div class="team-section co-section col-sm-6">
-            <h3>CO: {{ debate.CO }}</h3>
-            <div class="form-group">
-                <label for="cosp1" class="control-label">{{ debate.CO.speaker1 }}:</label>
-                {{ form.cosp1 }}
-                <label for="cosp2" class="control-label">{{ debate.CO.speaker2 }}:</label>
-                {{ form.cosp2 }}
+
+        <div class="row">
+            <div class="team-section cg-section col-sm-6">
+                <h3>CG: {{ debate.CG }}</h3>
+                <div class="form-group">
+                    <label for="cgsp1" class="control-label">{{ debate.CG.speaker1 }}:</label>
+                    {{ form.cgsp1 }}
+                    <label for="cgsp2" class="control-label">{{ debate.CG.speaker2 }}:</label>
+                    {{ form.cgsp2 }}
+                </div>
+            </div>
+            <div class="team-section co-section col-sm-6">
+                <h3>CO: {{ debate.CO }}</h3>
+                <div class="form-group">
+                    <label for="cosp1" class="control-label">{{ debate.CO.speaker1 }}:</label>
+                    {{ form.cosp1 }}
+                    <label for="cosp2" class="control-label">{{ debate.CO.speaker2 }}:</label>
+                    {{ form.cosp2 }}
+                </div>
             </div>
         </div>
-    </div>
 
-    {{ form.debate }}
-
+        {{ form.debate }}
+        {% csrf_token %}
+        <button class="btn btn-info" type="submit">Save Result</button>
+    </form>
 {% endblock %}
