@@ -11,10 +11,101 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="myModalLabel">Save Result?</h4>
                 </div>
-                <div class="modal-body">
-                    ...
+                <div class="modal-body" id="preview-body">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3>OG</h3>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>{{ debate.OG.speaker1 }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>{{ debate.OG.speaker2 }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Total Points: </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Position: </td>
+                                    <td></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="col-sm-6">
+                            <h3>OO</h3>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>{{ debate.OO.speaker1 }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>{{ debate.OO.speaker2 }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Total Points: </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Position: </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3>CG</h3>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>{{ debate.CG.speaker1 }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>{{ debate.CG.speaker2 }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Total Points: </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Position: </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-sm-6">
+                            <h3>CO</h3>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>{{ debate.CO.speaker1 }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>{{ debate.CO.speaker2 }}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Total Points: </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Position: </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

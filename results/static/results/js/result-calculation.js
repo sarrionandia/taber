@@ -7,8 +7,13 @@ $(document).ready(function () {
     $('#id_cgsp2').on("keyup", function(){update_total_speaks(this)});
     $('#id_cosp1').on("keyup", function(){update_total_speaks(this)});
     $('#id_cosp2').on("keyup", function(){update_total_speaks(this)});
+    $('#btn_save_result').on("click", update_preview);
     update_total_speaks();
 });
+
+function update_preview() {
+
+}
 
 function update_total_speaks(element){
     var elements = ['#id_ogsp1',
