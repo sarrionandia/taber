@@ -1,3 +1,12 @@
+var elements = ['#id_ogsp1',
+                    '#id_ogsp2',
+                    '#id_oosp1',
+                    '#id_oosp2',
+                    '#id_cgsp1',
+                    '#id_cgsp2',
+                    '#id_cosp1',
+                    '#id_cosp2'];
+
 $(document).ready(function () {
     $('#id_ogsp1').on("keyup", function(){update_total_speaks(this)});
     $('#id_ogsp2').on("keyup", function(){update_total_speaks(this)});
@@ -12,18 +21,13 @@ $(document).ready(function () {
 });
 
 function update_preview() {
+    elements.forEach(function(entry) {
+        $(entry + '_prev').html($(entry).val());
+    });
 
 }
 
 function update_total_speaks(element){
-    var elements = ['#id_ogsp1',
-                    '#id_ogsp2',
-                    '#id_oosp1',
-                    '#id_oosp2',
-                    '#id_cgsp1',
-                    '#id_cgsp2',
-                    '#id_cosp1',
-                    '#id_cosp2'];
     var fields_entered = true;
 
     elements.forEach(function(entry) {
@@ -41,10 +45,13 @@ function update_total_speaks(element){
     var cg_speaks = parseInt($('#id_cgsp1').val()) + parseInt($('#id_cgsp2').val());
     var co_speaks = parseInt($('#id_cosp1').val()) + parseInt($('#id_cosp2').val());
     $('#total_og').html(og_speaks);
+    $('#total_og_prev').html(og_speaks);
     $('#total_oo').html(oo_speaks);
+    $('#total_oo_prev').html(oo_speaks);
     $('#total_cg').html(cg_speaks);
+    $('#total_cg_prev').html(cg_speaks);
     $('#total_co').html(co_speaks);
-
+    $('#total_co_prev').html(co_speaks);
 
     var fields_unique = true;
     if ((og_speaks != oo_speaks)
