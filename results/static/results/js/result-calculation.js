@@ -53,6 +53,18 @@ function update_total_speaks(element){
     $('#total_co').html(co_speaks);
     $('#total_co_prev').html(co_speaks);
 
+    var speaks = {
+        'OG' : og_speaks,
+        'OO' : oo_speaks,
+        'CG' : cg_speaks,
+        'CO' : co_speaks,
+    };
+    var teamPositions = getSortedTeams(speaks);
+    $('#' + teamPositions[0] + '_pos').html("4th");
+    $('#' + teamPositions[1] + '_pos').html("3rd");
+    $('#' + teamPositions[2] + '_pos').html("2nd");
+    $('#' + teamPositions[3] + '_pos').html("1st");
+
     var fields_unique = true;
     if ((og_speaks != oo_speaks)
     && (og_speaks != cg_speaks)
@@ -69,4 +81,9 @@ function update_total_speaks(element){
     var button_should_show = !(fields_entered && fields_unique);
     $('#btn_save_result').attr('disabled', button_should_show);
 
+}
+
+function getSortedTeams(obj) {
+    var keys = []; for(var key in obj) keys.push(key);
+    return keys.sort(function(a,b){return obj[a]-obj[b]});
 }
