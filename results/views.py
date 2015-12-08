@@ -17,4 +17,3 @@ class EditResultsView(View):
             'debate' : debate,
         })
         return HttpResponse(template.render(context))
-
