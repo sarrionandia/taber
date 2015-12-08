@@ -23,7 +23,8 @@ class PreviewResultsView(View):
 
     def post(self, request, debateid):
 
-        return HttpResponse("OK")
+        form = ResultForm(request.POST)
+
 
 
 

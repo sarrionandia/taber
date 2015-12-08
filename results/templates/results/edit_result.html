@@ -5,64 +5,89 @@
 {% endblock %}
 
 {% block content %}
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <h1>Result for {{ debate }}</h1>
 
-    <form method="post" action="/results/preview/{{ debate.id }}/"/>
+    <form id="result_form" method="post" action="/results/preview/{{ debate.id }}/"/>
 
-        <div class="row">
-            <div class="team-section og-section col-sm-6">
-                <h3>OG: {{ debate.OG }}</h3>
-                <div class="form-group">
-                    <label for="ogsp1" class="control-label">{{ debate.OG.speaker1 }}:</label>
-                    {{ form.ogsp1 }}
-                    <label for="ogsp2" class="control-label">{{ debate.OG.speaker2 }}:</label>
-                    {{ form.ogsp2 }}
-                </div>
-                <p>Total: <strong id="total_og"></strong> Points</p>
+    <div class="row">
+        <div class="team-section og-section col-sm-6">
+            <h3>OG: {{ debate.OG }}</h3>
+            <div class="form-group">
+                <label for="ogsp1" class="control-label">{{ debate.OG.speaker1 }}:</label>
+                {{ form.ogsp1 }}
+                <label for="ogsp2" class="control-label">{{ debate.OG.speaker2 }}:</label>
+                {{ form.ogsp2 }}
             </div>
-            <div class="team-section oo-section col-sm-6">
-                <h3>{{ debate.OO }}</h3>
-                <div class="form-group">
-                    <label for="oosp1" class="control-label">{{ debate.OO.speaker1 }}:</label>
-                    {{ form.oosp1 }}
-                    <label for="oosp2" class="control-label">{{ debate.OO.speaker2 }}:</label>
-                    {{ form.oosp2 }}
-                </div>
-                <p>Total: <strong id="total_oo"></strong> Points</p>
-            </div>
+            <p>Total: <strong id="total_og"></strong> Points</p>
         </div>
-
-        <div class="row">
-            <div class="team-section cg-section col-sm-6">
-                <h3>CG: {{ debate.CG }}</h3>
-                <div class="form-group">
-                    <label for="cgsp1" class="control-label">{{ debate.CG.speaker1 }}:</label>
-                    {{ form.cgsp1 }}
-                    <label for="cgsp2" class="control-label">{{ debate.CG.speaker2 }}:</label>
-                    {{ form.cgsp2 }}
-                </div>
-                <p>Total: <strong id="total_cg"></strong> Points</p>
-
+        <div class="team-section oo-section col-sm-6">
+            <h3>{{ debate.OO }}</h3>
+            <div class="form-group">
+                <label for="oosp1" class="control-label">{{ debate.OO.speaker1 }}:</label>
+                {{ form.oosp1 }}
+                <label for="oosp2" class="control-label">{{ debate.OO.speaker2 }}:</label>
+                {{ form.oosp2 }}
             </div>
-            <div class="team-section co-section col-sm-6">
-                <h3>CO: {{ debate.CO }}</h3>
-                <div class="form-group">
-                    <label for="cosp1" class="control-label">{{ debate.CO.speaker1 }}:</label>
-                    {{ form.cosp1 }}
-                    <label for="cosp2" class="control-label">{{ debate.CO.speaker2 }}:</label>
-                    {{ form.cosp2 }}
-                </div>
-                <p>Total: <strong id="total_co"></strong> Points</p>
-
-            </div>
+            <p>Total: <strong id="total_oo"></strong> Points</p>
         </div>
+    </div>
 
-        {{ form.debate }}
-        {% csrf_token %}
-        <button id="btn_save_result" class="btn btn-info" type="submit" disabled>Save Result</button>
+    <div class="row">
+        <div class="team-section cg-section col-sm-6">
+            <h3>CG: {{ debate.CG }}</h3>
+            <div class="form-group">
+                <label for="cgsp1" class="control-label">{{ debate.CG.speaker1 }}:</label>
+                {{ form.cgsp1 }}
+                <label for="cgsp2" class="control-label">{{ debate.CG.speaker2 }}:</label>
+                {{ form.cgsp2 }}
+            </div>
+            <p>Total: <strong id="total_cg"></strong> Points</p>
+
+        </div>
+        <div class="team-section co-section col-sm-6">
+            <h3>CO: {{ debate.CO }}</h3>
+            <div class="form-group">
+                <label for="cosp1" class="control-label">{{ debate.CO.speaker1 }}:</label>
+                {{ form.cosp1 }}
+                <label for="cosp2" class="control-label">{{ debate.CO.speaker2 }}:</label>
+                {{ form.cosp2 }}
+            </div>
+            <p>Total: <strong id="total_co"></strong> Points</p>
+
+        </div>
+    </div>
+
+    {{ form.debate }}
+    {% csrf_token %}
+    <button id="btn_save_result"
+            class="btn btn-info"
+            type="button"
+            disabled
+            data-toggle="modal"
+            data-target="#myModal">Save Result</button>
     </form>
 
-        <div class="alert alert-danger" style="margin-top: 15px;" id="err_total_speaks">
+    <div class="alert alert-danger" style="margin-top: 15px;" id="err_total_speaks">
         Draws are not permitted: All teams must have a unique total score before saving the result.
     </div>
 
