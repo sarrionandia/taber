@@ -48,18 +48,12 @@ function update_total_speaks(element){
     && (oo_speaks != cg_speaks)
     && (oo_speaks != co_speaks)
     && (cg_speaks != co_speaks)){
-        console.log("All speaker totals are unique");
         $('#err_total_speaks').hide();
     }
     else {
-        console.log("Speaker totals are not unique");
         $('#err_total_speaks').show();
         fields_unique = false;
     }
-
-    console.log("All fields entered: " + fields_entered);
-    console.log("All fields unique: " + fields_unique);
-
     var button_should_show = !(fields_entered && fields_unique);
     $('#btn_save_result').attr('disabled', button_should_show);
 
