@@ -18,3 +18,12 @@ class EditResultsView(View):
         })
         return HttpResponse(template.render(context))
 
+
+class PreviewResultsView(View):
+
+    def post(self, request, debateid):
+
+        return HttpResponse("OK")
+
+
+
