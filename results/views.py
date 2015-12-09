@@ -45,4 +45,13 @@ class EditResultsView(View):
 
 class ResultsTableView(View):
     def get(self, request, round):
+
+        debates = Debate.objects.filter(round=round)
+        template = loader.get_template('results/results_table.html')
+        context = RequestContext(request, {
+            'round' : round,
+            'debates' : debates,
+        })
+        return HttpResponse(template.render(context))
+
         return HttpResponse(round)
