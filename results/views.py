@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseBadRequest, Http404
 from django.template import loader, RequestContext
 from django.views.generic import View
 
-from draw.models import Debate
+from draw.models import Debate, Tournament
 from forms import ResultForm
 from results.models import Result
 
@@ -46,7 +46,7 @@ class EditResultsView(View):
 class ResultsTableView(View):
     def get(self, request, round):
 
-        if round < 1:
+        if round < 1 or round > Tournament.instance().round:
             raise Http404
 
         debates = Debate.objects.filter(round=round)
