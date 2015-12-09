@@ -15,7 +15,7 @@
         </thead>
 
         {% for d in debates %}
-            <tr>
+            <tr {% if d.has_result %}class="success"{% endif %}>
                 <td>
                     <a href="/results/edit/{{ d.id }}/">{{ d.venue }}</a>
                 </td>

@@ -39,6 +39,10 @@ class Debate(models.Model):
         else:
             return results.models.Result(debate=self)
 
+    @property
+    def has_result(self):
+        return self.results.count() > 0
+
     def positions(self):
         return {
             'OG' : self.OG,
