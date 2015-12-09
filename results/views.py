@@ -47,7 +47,6 @@ class ResultsTableView(View):
     def get(self, request, round):
 
         if int(round) < 1 or int(round) > Tournament.instance().round:
-            print("ROUND>> ", Tournament.instance().round)
             raise Http404
 
         debates = Debate.objects.filter(round=round)
