@@ -42,3 +42,7 @@ class EditResultsView(View):
         result.full_clean()
         result.save()
         return HttpResponse(result.id)
+
+class ResultsTableView(View):
+    def get(self, request, round):
+        return HttpResponse(round)
