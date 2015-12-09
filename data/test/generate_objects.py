@@ -1,4 +1,5 @@
 from data.models import *
+from draw.controller.InitialDrawController import InitialDrawController
 from draw.models import *
 from results.models import Result
 
@@ -56,4 +57,28 @@ def valid_result_with_debate():
     result.cosp2 = 72
 
     result.save()
+    return result
+
+def setup_IV_R1():
+    for i in range(0, 20):
+        team = valid_team()
+        team.save()
+
+    for i in range(0, 5):
+        venue = valid_venue()
+        venue.save()
+
+    controller = InitialDrawController()
+    controller.initial_draw()
+
+def valid_result_given_debate(debate):
+    result = Result(debate=debate)
+    result.ogsp1, result.ogsp2 = 90, 90
+    result.oosp1, result.oosp2 = 80, 80
+    result.cgsp1, result.cgsp2 = 70, 70
+    result.cosp1, result.cosp2 = 60, 60
+
+    result.og, result.oo, result.cg, result.co = 3, 2, 1, 0
+    result.save()
+
     return result
