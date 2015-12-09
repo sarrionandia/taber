@@ -33,3 +33,13 @@ class ResultControllerTestCase(TestCase):
 
         self.assertFalse(ResultsController.results_entered_for_round(1), "Only some results entered but returned true")
 
+    def testGetResultForRound(self):
+        result = generate_objects.valid_result_with_debate()
+        debate = result.debate
+
+        error = "Result not retrieved correctly for round"
+
+        self.assertEqual(result, ResultsController.result_for_team(debate.OG, 1), error)
+        self.assertEqual(result, ResultsController.result_for_team(debate.OO, 1), error)
+        self.assertEqual(result, ResultsController.result_for_team(debate.CG, 1), error)
+        self.assertEqual(result, ResultsController.result_for_team(debate.CO, 1), error)

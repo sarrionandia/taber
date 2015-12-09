@@ -9,3 +9,7 @@ def results_entered_for_round(round):
         if not debate.has_result:
             return False
     return True
+
+def result_for_team(team, round):
+    debate = team.debate_for_round(round)
+    return debate.result
