@@ -2,4 +2,29 @@
 
 {% block content %}
     <h1>Results for Round {{ round }}</h1>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Venue</th>
+            <th>OG</th>
+            <th>OO</th>
+            <th>CG</th>
+            <th>CO</th>
+        </tr>
+        </thead>
+
+        {% for d in debates %}
+            <tr>
+                <td>
+                    <a href="/results/edit/{{ d.id }}/">{{ d.venue }}</a>
+                </td>
+                <td>{{ d.OG }}</td>
+                <td>{{ d.OO }}</td>
+                <td>{{ d.CG }}</td>
+                <td>{{ d.CO }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
 {% endblock %}
