@@ -15,7 +15,7 @@ class EditResultsView(View):
         form = ResultForm(initial={'debate': debateid})
         context = RequestContext(request, {
             'form' : form,
-            'debate' : debate,
+            'debate' : debate
         })
         return HttpResponse(template.render(context))
 
@@ -57,8 +57,11 @@ class ResultsTableView(View):
         debates = Debate.objects.filter(round=round)
         template = loader.get_template('results/results_table.html')
         context = RequestContext(request, {
-            'round' : round,
+            'round' : int(round),
             'debates' : debates,
+            'max_round' : Tournament.instance().round,
+            'all_rounds' : range(1, Tournament.instance().round+1)
+
         })
         return HttpResponse(template.render(context))
 
