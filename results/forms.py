@@ -1,39 +1,24 @@
 from django import forms
-from django.forms import ModelForm
 from results.models import Result
 
-class ResultForm(ModelForm):
-
-    class Meta:
-        model = Result
-        fields = ['debate',
-                  'ogsp1',
-                  'ogsp2',
-                  'oosp1',
-                  'oosp2',
-                  'cgsp1',
-                  'cgsp2',
-                  'cosp1',
-                  'cosp2'
-                  ]
-
-        speak_attrs = {
-            'type' : 'number',
-            'class' : 'form-control',
-            'min' : 0,
-            'max' : 100,
-            'placeholder' : '1-100',
-            'required' : 'required',
+def get_widget():
+    speak_attrs = {
+        'type' : 'number',
+        'class' : 'form-control',
+        'min' : 0,
+        'max' : 100,
+        'placeholder' : '1-100',
+        'required' : 'required',
     }
+    return forms.TextInput(attrs=speak_attrs.copy())
 
-        widgets = {
-            "ogsp2":forms.TextInput(attrs=speak_attrs.copy()),
-            "ogsp1":forms.TextInput(attrs=speak_attrs.copy()),
-            "oosp1":forms.TextInput(attrs=speak_attrs.copy()),
-            "oosp2":forms.TextInput(attrs=speak_attrs.copy()),
-            "cgsp1":forms.TextInput(attrs=speak_attrs.copy()),
-            "cgsp2":forms.TextInput(attrs=speak_attrs.copy()),
-            "cosp1":forms.TextInput(attrs=speak_attrs.copy()),
-            "cosp2":forms.TextInput(attrs=speak_attrs.copy()),
-            "debate" : forms.HiddenInput()
-        }
+class ResultForm(forms.Form):
+
+    ogsp1 = forms.IntegerField(widget=get_widget())
+    ogsp2 = forms.IntegerField(widget=get_widget())
+    oosp1 = forms.IntegerField(widget=get_widget())
+    oosp2 = forms.IntegerField(widget=get_widget())
+    cgsp1 = forms.IntegerField(widget=get_widget())
+    cgsp2 = forms.IntegerField(widget=get_widget())
+    cosp1 = forms.IntegerField(widget=get_widget())
+    cosp2 = forms.IntegerField(widget=get_widget())

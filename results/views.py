@@ -1,9 +1,10 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.template import loader, RequestContext
 from django.views.generic import View
 
 from draw.models import Debate
 from forms import ResultForm
+from results.models import Result
 
 
 class EditResultsView(View):
@@ -17,3 +18,27 @@ class EditResultsView(View):
             'debate' : debate,
         })
         return HttpResponse(template.render(context))
+
+    def post(self, request, debateid):
+        form = ResultForm(request.POST)
+
+        if form.is_valid():
+            result = Result(debate=Debate.objects.get(id=debateid))
+            print form.cleaned_data
+            result.ogsp1 = form.cleaned_data['ogsp1']
+            result.ogsp2 = form.cleaned_data['ogsp2']
+            result.oosp1 = form.cleaned_data['oosp1']
+            result.oosp2 = form.cleaned_data['oosp1']
+            result.cgsp1 = form.cleaned_data['cgsp1']
+            result.cgsp2 = form.cleaned_data['cgsp2']
+            result.cosp1 = form.cleaned_data['cosp1']
+            result.cosp2 = form.cleaned_data['cosp2']
+
+            result.add_positions_from_speaks()
+
+        else:
+            return HttpResponseBadRequest()
+
+        result.full_clean()
+        result.save()
+        return HttpResponse(result.id)

@@ -65,3 +65,12 @@ class ResultTestCase(TestCase):
         self.assertEqual(total_speaks['cg'], result.cgsp1 + result.cgsp2)
         self.assertEqual(total_speaks['co'], result.cosp1 + result.cosp2)
 
+    def testCreateResultFromSpeaks(self):
+        result = generate_objects.valid_result_with_debate()
+        result.og,result.oo,result.cg,result.co = None,None,None,None
+        result.add_positions_from_speaks()
+
+        self.assertEqual(result.og, 0)
+        self.assertEqual(result.oo, 1)
+        self.assertEqual(result.cg, 2)
+        self.assertEqual(result.co, 3)

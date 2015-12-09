@@ -1,3 +1,4 @@
+import operator
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
@@ -64,3 +65,11 @@ class Result(models.Model):
             raise ValidationError("Team in 2nd must have second highest speaker score")
         if self.positions()[speaks_order[3]] != 3:
             raise ValidationError("Team in 1st must have highest speaker score")
+
+    def add_positions_from_speaks(self):
+        speaks = self.total_speaks()
+        positions = sorted(speaks, key=speaks.__getitem__)
+        self.og = positions.index("og")
+        self.oo = positions.index("oo")
+        self.cg = positions.index("cg")
+        self.co = positions.index("co")
