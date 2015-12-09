@@ -11,12 +11,10 @@ class Teams(object):
 
 class DrawControllerTestCase(TestCase):
     def testCreatePoolsWithEmptyList(self):
-        teams = []
         controller = DrawController()
         self.assertEqual(0, len(controller.create_pools()))
 
     def testCreatePoolsWithNone(self):
-        teams = None
         controller = DrawController()
         self.assertEqual(0, len(controller.create_pools()))
 
@@ -25,3 +23,4 @@ class DrawControllerTestCase(TestCase):
         with self.assertRaises(TournamentStateException):
             controller = DrawController()
             controller.create_pools()
+
