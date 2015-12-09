@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, Http404
 from django.template import loader, RequestContext
 from django.views.generic import View
 
@@ -45,6 +45,9 @@ class EditResultsView(View):
 
 class ResultsTableView(View):
     def get(self, request, round):
+
+        if round < 1:
+            raise Http404
 
         debates = Debate.objects.filter(round=round)
         template = loader.get_template('results/results_table.html')
