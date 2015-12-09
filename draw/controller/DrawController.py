@@ -9,5 +9,7 @@ class DrawController():
         if not ResultsController.results_entered_for_round(Tournament.instance().round):
             raise TournamentStateException("All results for current round must be entered to draw")
 
+
+
         return []
 

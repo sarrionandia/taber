@@ -1,5 +1,8 @@
 from django.db import models
 
+import draw
+
+
 class Institution(models.Model):
     name = models.CharField(max_length=50);
 
@@ -23,6 +26,19 @@ class Team(models.Model):
 
     def __str__(self):
         return self.institution.__str__() + ' ' + self.name
+
+    def debate_for_round(self, round):
+        debates = draw.models.Debate.objects.filter(round=round)
+        if debates.filter(OG=self).count() > 0:
+            return debates.filter(OG=self).first()
+        if debates.filter(OO=self).count() > 0:
+            return debates.filter(OO=self).first()
+        if debates.filter(CG=self).count() > 0:
+            return debates.filter(CG=self).first()
+        if debates.filter(CO=self).count() > 0:
+            return debates.filter(CO=self).first()
+        return None
+
 
 class Judge(models.Model):
     name = models.CharField(max_length=80)
