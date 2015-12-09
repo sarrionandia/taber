@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseBadRequest, Http404
+from django.http import HttpResponse, HttpResponseBadRequest, Http404, HttpResponseRedirect
 from django.template import loader, RequestContext
 from django.views.generic import View
 
@@ -42,6 +42,11 @@ class EditResultsView(View):
         result.full_clean()
         result.save()
         return HttpResponse(result.id)
+
+
+class CurrentResultsTableView(View):
+    def get(self, request):
+        return HttpResponseRedirect('/results/round/' + str(Tournament.instance().round))
 
 class ResultsTableView(View):
     def get(self, request, round):
