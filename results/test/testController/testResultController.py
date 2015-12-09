@@ -27,6 +27,12 @@ class ResultControllerTestCase(TestCase):
 
         self.assertTrue(ResultsController.results_entered_for_round(1), "All results entered but returned false")
 
+    def testReturnsFalseForPartiallyEnteredRound(self):
+        self.setupIVR1()
+        self.validResult(Debate.objects.first())
+
+        self.assertFalse(ResultsController.results_entered_for_round(1), "Only some results entered but returned true")
+
     def validResult(self, debate):
         result = Result(debate=debate)
         result.ogsp1, result.ogsp2 = 90, 90
