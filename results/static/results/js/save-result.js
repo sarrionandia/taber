@@ -15,7 +15,7 @@ function save_result(debateid, csrf) {
 
         },
         success: function () {
-
+            //window.location.replace('/results/');
         },
         error: function (request, error) {
             alert("Couldn't update " + name);

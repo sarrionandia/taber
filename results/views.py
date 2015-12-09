@@ -23,7 +23,7 @@ class EditResultsView(View):
         form = ResultForm(request.POST)
 
         if form.is_valid():
-            result = Result(debate=Debate.objects.get(id=debateid))
+            result = Debate.objects.get(id=debateid).result
             print form.cleaned_data
             result.ogsp1 = form.cleaned_data['ogsp1']
             result.ogsp2 = form.cleaned_data['ogsp2']
