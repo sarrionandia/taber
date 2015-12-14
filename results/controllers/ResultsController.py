@@ -1,5 +1,7 @@
+from draw.controller.DebateController import DebateController
 from draw.models import TournamentStateException, Tournament, Debate
 
+debate_controller = DebateController()
 
 def results_entered_for_round(round):
     if round > Tournament.instance().round:
@@ -11,7 +13,7 @@ def results_entered_for_round(round):
     return True
 
 def result_for_team(team, round):
-    debate = team.debate_for_round(round)
+    debate = debate_controller.debate_for_round(team, round)
     return debate.result
 
 def team_points_for_team(team, round):

@@ -2,6 +2,7 @@ from data.models import Institution, Team
 from django.test import TestCase
 
 from data.test import generate_objects
+from draw.controller.DebateController import DebateController
 
 
 class TeamTestCase(TestCase):
@@ -24,7 +25,9 @@ class TeamTestCase(TestCase):
         debate2 = generate_objects.valid_debate()
         debate2.save()
 
-        self.assertEqual(debate, debate.OG.debate_for_round(1))
-        self.assertEqual(debate, debate.OO.debate_for_round(1))
-        self.assertEqual(debate, debate.CG.debate_for_round(1))
-        self.assertEqual(debate, debate.CO.debate_for_round(1))
+        controller = DebateController()
+
+        self.assertEqual(debate, controller.debate_for_round(debate.OG, 1))
+        self.assertEqual(debate, controller.debate_for_round(debate.OO, 1))
+        self.assertEqual(debate, controller.debate_for_round(debate.CO, 1))
+        self.assertEqual(debate, controller.debate_for_round(debate.OO, 1))
