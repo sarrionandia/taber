@@ -1,7 +1,5 @@
 from django.db import models
 
-import draw
-
 
 class Institution(models.Model):
     name = models.CharField(max_length=50);
@@ -28,13 +26,13 @@ class Team(models.Model):
         return self.institution.__str__() + ' ' + self.name
 
 
-
 class Judge(models.Model):
     name = models.CharField(max_length=80)
     institution = models.ForeignKey(Institution)
 
     def __str__(self):
         return self.name + ' <' + self.institution.__str__() + '>'
+
 
 class Venue(models.Model):
     name=models.CharField(max_length=50)
