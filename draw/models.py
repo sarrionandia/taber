@@ -9,6 +9,7 @@ from data.models import Team, Venue, Judge
 class TournamentStateException(Exception):
     pass
 
+
 class Tournament(models.Model):
     round = models.IntegerField()
 
@@ -23,6 +24,7 @@ class Tournament(models.Model):
             return Tournament.objects.first()
         else:
             return Tournament(round=0)
+
 
 class Debate(models.Model):
     round = models.IntegerField(validators=[MinValueValidator(1)])
