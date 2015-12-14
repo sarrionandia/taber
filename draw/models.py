@@ -4,6 +4,7 @@ from django.db import models
 
 import results
 from data.models import Team, Venue, Judge
+from draw.validators import DebateValidator
 
 
 class TournamentStateException(Exception):
@@ -57,13 +58,5 @@ class Debate(models.Model):
         return 'R' + str(self.round) + "<" + self.venue.name + ">"
 
     def clean(self):
-        self.validate_team_unique()
+        DebateValidator.validate(self, Debate.objects.all())
 
-    def validate_team_unique(self):
-        if (len(self.positions().values()) > (len(set(self.positions().values())))):
-            raise ValidationError("A team can't be in two positions in one room")
-
-        debates = Debate.objects.all().filter(round=self.round)
-        for debate in debates:
-            if any(x in debate.positions().values() for x in self.positions().values()):
-                raise ValidationError("A team can't be in two debates in the same round")
