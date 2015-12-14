@@ -40,31 +40,9 @@ class Result(models.Model):
         }
 
     def clean(self):
-        self.check_positions_awarded()
-        self.check_position_matches_speaks()
+        from results.validators import ResultValidator
+        ResultValidator.validate(self)
 
-    def check_positions_awarded(self):
-        results = [self.og, self.oo, self.cg, self.co]
-        if not 0 in results:
-            raise ValidationError("4th was not awarded")
-        if not 1 in results:
-            raise ValidationError("3rd was not awarded")
-        if not 2 in results:
-            raise ValidationError("2nd was not awarded")
-        if not 3 in results:
-            raise ValidationError("1st was not awarded")
-
-    def check_position_matches_speaks(self):
-        speaks = self.total_speaks()
-        speaks_order = sorted(speaks, key=speaks.get)
-        if self.positions()[speaks_order[0]] != 0:
-            raise ValidationError("Team in 4th must have lowest speaker score")
-        if self.positions()[speaks_order[1]] != 1:
-            raise ValidationError("Team in 3rd must have second lowest speaker score")
-        if self.positions()[speaks_order[2]] != 2:
-            raise ValidationError("Team in 2nd must have second highest speaker score")
-        if self.positions()[speaks_order[3]] != 3:
-            raise ValidationError("Team in 1st must have highest speaker score")
 
     def add_positions_from_speaks(self):
         speaks = self.total_speaks()
