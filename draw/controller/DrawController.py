@@ -1,12 +1,13 @@
-from draw.models import Tournament, TournamentStateException, Debate
+from draw.models import Tournament, TournamentStateException
+from results.controllers.ResultsController import ResultsController
 
 
 class DrawController():
 
-    def create_pools(self):
+    resultsController = ResultsController()
 
-        from results.controllers import ResultsController
-        if not ResultsController.results_entered_for_round(Tournament.instance().round):
+    def create_pools(self):
+        if not self.resultsController.results_entered_for_round(Tournament.instance().round):
             raise TournamentStateException("All results for current round must be entered to draw")
 
         return []
