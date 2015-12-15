@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 from results.controllers.PointsController import PointsController
-from mock import Mock
+from mock import Mock, call
 
 
 class PointsControllerTestCase(TestCase):
@@ -27,3 +27,8 @@ class PointsControllerTestCase(TestCase):
     def testGetTeamPointsCallsResultController(self):
         self.points_controller.team_points_for_team(self.og, 1)
         self.results_controller.result_for_team.assert_called_once_with(self.og, 1)
+
+    def testGetTotalPointsCallsCorrectNumberOfRounds(self):
+        self.points_controller.total_points_for_team(self.og, 3)
+        calls = [call(self.og, 1), call(self.og, 2), call(self.og, 3)]
+        self.results_controller.result_for_team.assert_has_calls(calls, any_order=True)

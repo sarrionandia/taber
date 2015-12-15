@@ -20,3 +20,9 @@ class PointsController():
             return result.cg
         if debate.CO == team:
             return result.co
+
+    def total_points_for_team(self, team, maxround):
+        total = 0
+        for round in range(1, maxround+1):
+            total += self.team_points_for_team(team, round)
+        return total
