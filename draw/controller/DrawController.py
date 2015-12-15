@@ -16,7 +16,7 @@ class DrawController():
         if not self.resultsController.results_entered_for_round(Tournament.instance().round):
             raise TournamentStateException("All results for current round must be entered to draw")
 
-        return []
+        return self.create_blank_pools(max_round)
 
     @staticmethod
     def create_blank_pools(max_round):
@@ -24,6 +24,6 @@ class DrawController():
         if max_round == 0:
             return pools
 
-        for points in range(0, max_round*4):
+        for points in range(0, 4 + ((max_round-1) * 3)):
             pools.update({points:[]})
         return pools
