@@ -18,7 +18,8 @@ class DrawController():
 
         return []
 
-    def create_blank_pools(self, max_round):
+    @staticmethod
+    def create_blank_pools(max_round):
         pools = {}
         if max_round == 0:
             return pools
