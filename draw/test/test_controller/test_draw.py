@@ -1,6 +1,5 @@
 from django.test import TestCase
 
-from data.test import generate_objects
 from draw.controller.DrawController import DrawController
 from draw.models import TournamentStateException
 from mock import Mock
@@ -14,8 +13,15 @@ class DrawControllerTestCase(TestCase):
             Mock(), Mock(), Mock(), Mock()
         ]
 
+        points_controller = Mock()
+        points_controller.total_points_for_team.return_value = 3
+        self.controller.pointsController = points_controller
+
+        self.results_controller = Mock()
+        self.controller.resultsController = self.results_controller
+
     def testThrowsExceptionIfNotAllDebatesHaveResult(self):
-        generate_objects.setup_IV_R1()
+        self.results_controller.results_entered_for_round.return_value = False
         with self.assertRaises(TournamentStateException):
             self.controller.create_pools(self.teams, 3)
 
@@ -35,3 +41,7 @@ class DrawControllerTestCase(TestCase):
         pools = self.controller.create_pools(self.teams, 4)
         for pool in pools.values():
             self.assertTrue(isinstance(pool, list), "Each pool should be a list, even if empty")
+
+    def testTeamsAreAddedToPools(self):
+        pools = self.controller.create_pools(self.teams, 2)
+        self.assertEqual(4, len(pools[3]))

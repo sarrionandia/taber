@@ -15,8 +15,13 @@ class DrawController():
     def create_pools(self, teams, max_round):
         if not self.resultsController.results_entered_for_round(Tournament.instance().round):
             raise TournamentStateException("All results for current round must be entered to draw")
+        pools = self.create_blank_pools(max_round)
 
-        return self.create_blank_pools(max_round)
+        for team in teams:
+            points = self.pointsController.total_points_for_team(None, 1)
+            pools[points].append(team)
+
+        return pools
 
     @staticmethod
     def create_blank_pools(max_round):
