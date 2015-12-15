@@ -42,6 +42,6 @@ class DrawControllerTestCase(TestCase):
         for pool in pools.values():
             self.assertTrue(isinstance(pool, list), "Each pool should be a list, even if empty")
 
-    def testTeamsAreAddedToPools(self):
+    def testNumberOfTeamsAreAddedToPools(self):
         pools = self.controller.create_pools(self.teams, 2)
         self.assertEqual(4, len(pools[3]))
