@@ -53,11 +53,3 @@ class ResultControllerTestCase(TestCase):
     def testGetResultForRound(self):
         return_value = self.resultController.result_for_team(self.team, 1)
         self.assertEqual(self.debate.result, return_value)
-
-    # def testCorrectTeamPointsForRound(self):
-    #     result = generate_objects.valid_result_with_debate()
-    #
-    #     self.assertEqual(result.og, self.resultController.team_points_for_team(result.debate.OG, 1))
-    #     self.assertEqual(result.oo, self.resultController.team_points_for_team(result.debate.OO, 1))
-    #     self.assertEqual(result.cg, self.resultController.team_points_for_team(result.debate.CG, 1))
-    #     self.assertEqual(result.co, self.resultController.team_points_for_team(result.debate.CO, 1))

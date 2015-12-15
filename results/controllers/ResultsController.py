@@ -19,15 +19,3 @@ class ResultsController():
         debate = self.debate_controller.debate_for_round(team, round)
         return debate.result
 
-    def team_points_for_team(self, team, round):
-        result = self.result_for_team(team, round)
-        debate = result.debate
-
-        if debate.OG == team:
-            return result.og
-        if debate.OO == team:
-            return result.oo
-        if debate.CG == team:
-            return result.cg
-        if debate.CO == team:
-            return result.co
