@@ -45,3 +45,8 @@ class DrawControllerTestCase(TestCase):
     def testNumberOfTeamsAreAddedToPools(self):
         pools = self.controller.create_pools(self.teams, 2)
         self.assertEqual(4, len(pools[3]))
+
+    def testRemoveEmptyPools(self):
+        pools = self.controller.create_pools(self.teams, 2)
+        pools = self.controller.remove_empty(pools)
+        self.assertEqual(1, len(pools.keys()))

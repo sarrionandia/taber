@@ -32,3 +32,12 @@ class DrawController():
         for points in range(0, 4 + ((max_round-1) * 3)):
             pools.update({points:[]})
         return pools
+
+    @staticmethod
+    def remove_empty(pools):
+        keys = pools.keys()
+        for key in keys:
+            pool = pools[key]
+            if len(pool) < 1:
+                pools.pop(key)
+        return pools
