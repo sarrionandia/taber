@@ -23,7 +23,7 @@ class Team(models.Model):
         from results.controllers.PointsController import PointsController
         controller = PointsController()
         from draw.models import Tournament
-        return controller.total_points_for_team(self, Tournament.instance().round-1)
+        return controller.total_points_for_team(self, Tournament.instance().round_with_results)
 
     @property
     def speakers(self):

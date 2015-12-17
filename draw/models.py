@@ -26,6 +26,14 @@ class Tournament(models.Model):
         else:
             return Tournament(round=0)
 
+    @property
+    def round_with_results(self):
+        from results.controllers.ResultsController import ResultsController
+        controller = ResultsController()
+        if controller.results_entered_for_round(self.round):
+            return self.round
+        else:
+            return self.round - 1
 
 class Debate(models.Model):
     round = models.IntegerField(validators=[MinValueValidator(1)])
