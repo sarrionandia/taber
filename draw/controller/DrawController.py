@@ -43,8 +43,27 @@ class DrawController():
         return pools
 
     @staticmethod
-    def balance_pools(pools):
-        if len([item for sublist in pools.values() for item in sublist]) % 4 != 0:
+    def next_viable_pool(current, pools):
+        for i in range(current+1, len(pools.values())):
+            next_pool = pools.values()[i]
+            if len(next_pool) != 0:
+                return next_pool
+        raise ValueError("No viable pool")
+
+    def balance_pools(self, pools):
+        flattened_pools = [item for sublist in pools.values() for item in sublist]
+        if len(flattened_pools) % 4 != 0:
             raise ValueError("Number of teams must be divisible by 4")
-        return None
+
+        made_swap = True
+        while made_swap:
+            made_swap = False
+            for i in range(0, len(pools.values())):
+                pool = pools.values()[i]
+                if (len(pool) %4 != 0) and pool!=pools.values()[-1]:
+                    source_pool = self.next_viable_pool(i, pools)
+                    pool.append(source_pool.pop(0))
+                    made_swap = True
+
+        return pools
 

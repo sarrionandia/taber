@@ -58,3 +58,16 @@ class DrawControllerTestCase(TestCase):
         }
         with self.assertRaises(ValueError):
             self.controller.balance_pools(pools)
+
+    def testAllPoolsDivisibleByFour(self):
+        pools = {
+            1 : [Mock(), Mock(), Mock()],
+            2 : [Mock()],
+            3 : [Mock(), Mock(), Mock(), Mock(), Mock()],
+            4 : [Mock()],
+            5 : [Mock(), Mock()]
+        }
+
+        balanced_pools = self.controller.balance_pools(pools)
+        for pool in balanced_pools.values():
+            self.assertEqual(0, len(pool) % 4)
