@@ -1,8 +1,9 @@
 {% extends "root.html" %}
 
 {% block content %}
+    <h1>Draw Console</h1>
+
     {% if tournament.round == 0 %}
-        <h1>Draw Console</h1>
 
         {% if not teams_ok %}
             <div class="alert alert-danger">
@@ -26,5 +27,16 @@
                         type="submit">Draw Round 1</button>
             </form>
         {% endif %}
+    {% endif %}
+    <h2>Current Round: {{ this_round }}</h2>
+
+    {% if results_entered %}
+        <p>
+            When you are ready you can create the draw for Round {{ next_round }}.
+        </p>
+    {% else %}
+        <div class="alert alert-danger">
+        You cannot draw the next round until you have input all of the results for the current round.
+        </div>
     {% endif %}
 {% endblock %}
