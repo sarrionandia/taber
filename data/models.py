@@ -19,6 +19,13 @@ class Team(models.Model):
     speaker2 = models.CharField(max_length=50)
 
     @property
+    def total_team_points(self):
+        from results.controllers.PointsController import PointsController
+        controller = PointsController()
+        from draw.models import Tournament
+        return controller.total_points_for_team(self, Tournament.instance().round-1)
+
+    @property
     def speakers(self):
         return [self.speaker1, self.speaker2]
 
