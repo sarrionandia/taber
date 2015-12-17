@@ -37,7 +37,7 @@ class TeamStandingView(View):
             row = [t+1, team]
             for r in range(1,round+1):
                 row.append(points_controller.team_points_for_team(team, r))
-                row.append(team.total_team_points)
+            row.append(team.total_team_points)
             rows.append(row)
         template = loader.get_template('display/team_standing.html')
         context = RequestContext(request, {
