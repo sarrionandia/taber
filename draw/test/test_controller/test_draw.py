@@ -61,11 +61,11 @@ class DrawControllerTestCase(TestCase):
 
     def testAllPoolsDivisibleByFour(self):
         pools = {
-            1 : [Mock(), Mock(), Mock()],
-            2 : [Mock()],
-            3 : [Mock(), Mock(), Mock(), Mock(), Mock()],
-            4 : [Mock()],
-            5 : [Mock(), Mock()]
+            1 : [Mock(name='P1_a'), Mock(name="P1_b"), Mock(name="P1_c")],
+            2 : [Mock(name="P2")],
+            3 : [Mock(name="P3_a"), Mock(name="P3_b"), Mock(name="P3_c"), Mock(name="P3_d"), Mock(name="P3_e")],
+            4 : [Mock(name="P4")],
+            5 : [Mock(name="P5_a"), Mock(name="P5b")]
         }
 
         balanced_pools = self.controller.balance_pools(pools)
