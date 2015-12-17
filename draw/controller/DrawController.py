@@ -41,3 +41,10 @@ class DrawController():
             if len(pool) < 1:
                 pools.pop(key)
         return pools
+
+    @staticmethod
+    def balance_pools(pools):
+        if len([item for sublist in pools.values() for item in sublist]) % 4 != 0:
+            raise ValueError("Number of teams must be divisible by 4")
+        return None
+

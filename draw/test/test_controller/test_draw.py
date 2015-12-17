@@ -50,3 +50,11 @@ class DrawControllerTestCase(TestCase):
         pools = self.controller.create_pools(self.teams, 2)
         pools = self.controller.remove_empty(pools)
         self.assertEqual(1, len(pools.keys()))
+
+    def testBalancePoolsReturnsExceptionForInvalidTeamNumber(self):
+        pools = {
+            1 : [Mock(), Mock(), Mock()],
+            2: [Mock(), Mock()]
+        }
+        with self.assertRaises(ValueError):
+            self.controller.balance_pools(pools)
