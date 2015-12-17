@@ -23,6 +23,9 @@ class Result(models.Model):
     cg = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(3)])
     co = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(3)])
 
+    def __str__(self):
+        return "Result for " + str(self.debate)
+
     def total_speaks(self):
         return {
             'og' : self.ogsp1 + self.ogsp2,
