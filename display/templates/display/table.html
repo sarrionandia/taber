@@ -26,10 +26,10 @@
         {% for d in debates %}
             <tr>
                 <td>{{ d.venue }}</td>
-                <td>{{ d.OG }}</td>
-                <td>{{ d.OO }}</td>
-                <td>{{ d.CG }}</td>
-                <td>{{ d.CO }}</td>
+                <td><span title="{{ d.OG.total_team_points }} Points">{{ d.OG }}</span></td>
+                <td><span title="{{ d.OO.total_team_points }} Points">{{ d.OO }}</span></td>
+                <td><span title="{{ d.CG.total_team_points }} Points">{{ d.CG }}</span></td>
+                <td><span title="{{ d.CO.total_team_points }} Points">{{ d.CO }}</span></td>
             </tr>
         {% endfor %}
     </table>
