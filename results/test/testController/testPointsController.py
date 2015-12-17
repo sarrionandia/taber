@@ -14,7 +14,11 @@ class PointsControllerTestCase(TestCase):
         self.points_controller = PointsController()
         self.results_controller = Mock()
         debate = Mock(OG=self.og, OO=self.oo, CG=self.cg, CO=self.co)
-        result = Mock(debate=debate, og=0, oo=1, cg=2, co=3)
+        result = Mock(debate=debate, og=0, oo=1, cg=2, co=3,
+                      ogsp1 = 60, ogsp2 = 65,
+                      oosp1 = 70, oosp2 = 75,
+                      cgsp1 = 80, cgsp2 = 85,
+                      cosp1 = 90, cosp2 = 95)
         self.results_controller.result_for_team.return_value = result
         self.points_controller.results_controller = self.results_controller
 
@@ -32,3 +36,27 @@ class PointsControllerTestCase(TestCase):
         self.points_controller.total_points_for_team(self.og, 3)
         calls = [call(self.og, 1), call(self.og, 2), call(self.og, 3)]
         self.results_controller.result_for_team.assert_has_calls(calls, any_order=True)
+
+    def testGetSpeakerPointsReturnsCorrectNumberOfPoints(self):
+        speaks = self.points_controller.speaker_points_for_team(self.og, 1)
+        self.assertEqual(2, len(speaks), "Should only return two speaker points per team")
+
+    def testSpeakerPointsCorrectForOG(self):
+        speaks = self.points_controller.speaker_points_for_team(self.og, 1)
+        self.assertEqual(speaks[0], 60)
+        self.assertEqual(speaks[1], 65)
+
+    def testSpeakerPointsCorrectForOO(self):
+        speaks = self.points_controller.speaker_points_for_team(self.oo, 1)
+        self.assertEqual(speaks[0], 70)
+        self.assertEqual(speaks[1], 75)
+
+    def testSpeakerPointsCorrectForCG(self):
+        speaks = self.points_controller.speaker_points_for_team(self.cg, 1)
+        self.assertEqual(speaks[0], 80)
+        self.assertEqual(speaks[1], 85)
+
+    def testSpeakerPointsCorrectForCO(self):
+        speaks = self.points_controller.speaker_points_for_team(self.co, 1)
+        self.assertEqual(speaks[0], 90)
+        self.assertEqual(speaks[1], 95)

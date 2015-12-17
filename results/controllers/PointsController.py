@@ -26,3 +26,16 @@ class PointsController():
         for round in range(1, maxround+1):
             total += self.team_points_for_team(team, round)
         return total
+
+    def speaker_points_for_team(self, team, round):
+        result = self.results_controller.result_for_team(team, round)
+        debate = result.debate
+
+        if debate.OG == team:
+            return [result.ogsp1, result.ogsp2]
+        if debate.OO == team:
+            return [result.oosp1, result.oosp2]
+        if debate.CG == team:
+            return [result.cgsp1, result.cgsp2]
+        if debate.CO == team:
+            return [result.cosp1, result.cosp2]
