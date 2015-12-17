@@ -31,12 +31,13 @@ class TeamStandingView(View):
             round -= 1
 
         teams = list(Team.objects.all())
-        teams.sort(key= lambda team: team.total_team_points, reverse=True)
+        teams.sort(key= lambda team: (team.total_team_points, team.total_speaker_sum), reverse=True)
         for t in range(0, len(teams)):
             team = teams[t]
             row = [t+1, team]
             for r in range(1,round+1):
                 row.append(points_controller.team_points_for_team(team, r))
+            row.append(team.total_speaker_sum)
             row.append(team.total_team_points)
             rows.append(row)
         template = loader.get_template('display/team_standing.html')

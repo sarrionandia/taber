@@ -26,6 +26,13 @@ class Team(models.Model):
         return controller.total_points_for_team(self, Tournament.instance().round_with_results)
 
     @property
+    def total_speaker_sum(self):
+        from results.controllers.PointsController import PointsController
+        controller = PointsController()
+        from draw.models import Tournament
+        return sum(controller.speaker_points_for_team(self, Tournament.instance().round_with_results))
+
+    @property
     def speakers(self):
         return [self.speaker1, self.speaker2]
 
