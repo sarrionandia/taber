@@ -85,9 +85,11 @@ class DrawController():
             for i in range(0, len(pools.values())):
                 pool = pools.values()[i]
                 if (len(pool) %4 != 0) and pool!=pools.values()[-1]:
-                    source_pool = self.next_viable_pool(i, pools)
-                    pool.append(source_pool.pop(0))
-                    made_swap = True
+                    teams_needed = 4 - (len(pool) % 4)
+                    for t in range(0, teams_needed):
+                        source_pool = self.next_viable_pool(i, pools)
+                        pool.append(source_pool.pop(0))
+                        made_swap = True
 
         return pools
 
