@@ -1,3 +1,5 @@
+import random
+
 from draw.models import Tournament, TournamentStateException
 from results.controllers.PointsController import PointsController
 from results.controllers.ResultsController import ResultsController
@@ -49,6 +51,11 @@ class DrawController():
             if len(next_pool) != 0:
                 return next_pool
         raise ValueError("No viable pool")
+
+    @staticmethod
+    def shuffle_pools(pools):
+        for pool in pools.values():
+            random.shuffle(pool)
 
     def balance_pools(self, pools):
         flattened_pools = [item for sublist in pools.values() for item in sublist]
