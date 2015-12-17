@@ -4,6 +4,7 @@ from django.template import RequestContext, loader
 from django.views.generic import View
 
 from data.models import Team, Venue
+from draw.controller.DrawController import DrawController
 from draw.controller.InitialDrawController import InitialDrawController
 from draw.controller.VenueMapper import VenueMapper
 from draw.models import Tournament
@@ -36,4 +37,11 @@ class DrawFirstRound(View):
         controller.initial_draw()
         mapper = VenueMapper()
         mapper.map_venues(1)
+        return redirect('/draw')
+
+
+class DrawNextRound(View):
+    def post(self, request):
+        controller = DrawController()
+        controller.draw_next_round()
         return redirect('/draw')

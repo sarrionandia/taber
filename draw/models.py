@@ -58,5 +58,5 @@ class Debate(models.Model):
         return 'R' + str(self.round) + "<" + self.venue.name + ">"
 
     def clean(self):
-        DebateValidator.validate(self, Debate.objects.all())
+        DebateValidator.validate(self, Debate.objects.filter(round=self.round))
 

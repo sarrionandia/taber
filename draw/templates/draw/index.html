@@ -27,16 +27,25 @@
                         type="submit">Draw Round 1</button>
             </form>
         {% endif %}
-    {% endif %}
-    <h2>Current Round: {{ this_round }}</h2>
 
-    {% if results_entered %}
-        <p>
-            When you are ready you can create the draw for Round {{ next_round }}.
-        </p>
     {% else %}
-        <div class="alert alert-danger">
-        You cannot draw the next round until you have input all of the results for the current round.
-        </div>
+
+        <h2>Current Round: {{ this_round }}</h2>
+
+        {% if results_entered %}
+            <p>
+                When you are ready you can create the draw for Round {{ next_round }}.
+            </p>
+            <form method="post" action="/draw/next/">
+            {% csrf_token %}
+            <button class="button btn-success btn-lg" type="submit">
+                Draw Round {{ next_round }}
+            </button>
+            </form>
+        {% else %}
+            <div class="alert alert-danger">
+            You cannot draw the next round until you have input all of the results for the current round.
+            </div>
+        {% endif %}
     {% endif %}
 {% endblock %}

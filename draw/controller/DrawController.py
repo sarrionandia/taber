@@ -1,6 +1,7 @@
 import random
 
 from data.models import Team
+from draw.controller.VenueMapper import VenueMapper
 from draw.models import Tournament, TournamentStateException, Debate
 from results.controllers.PointsController import PointsController
 from results.controllers.ResultsController import ResultsController
@@ -17,13 +18,16 @@ class DrawController():
 
     def draw_next_round(self):
         tournament = Tournament.instance()
+        next_round = tournament.round + 1
         pools = self.create_pools(Team.objects.all(), tournament.round)
         pools = self.remove_empty(pools)
         pools = self.shuffle_pools(pools)
         pools = self.balance_pools(pools)
-        debates = self.draw_from_pools(tournament.round+1, pools)
-        tournament.round += 1
+        debates = self.draw_from_pools(next_round, pools)
+        tournament.round = next_round
         tournament.save()
+        mapper = VenueMapper()
+        mapper.map_venues(next_round)
         return debates
 
     def create_pools(self, teams, max_round):
@@ -32,7 +36,7 @@ class DrawController():
         pools = self.create_blank_pools(max_round)
 
         for team in teams:
-            points = self.pointsController.total_points_for_team(None, 1)
+            points = self.pointsController.total_points_for_team(team, 1)
             pools[points].append(team)
 
         return pools
@@ -68,6 +72,7 @@ class DrawController():
     def shuffle_pools(pools):
         for pool in pools.values():
             random.shuffle(pool)
+        return pools
 
     def balance_pools(self, pools):
         flattened_pools = [item for sublist in pools.values() for item in sublist]
