@@ -1,6 +1,7 @@
 import random
 
-from draw.models import Tournament, TournamentStateException
+from data.models import Team
+from draw.models import Tournament, TournamentStateException, Debate
 from results.controllers.PointsController import PointsController
 from results.controllers.ResultsController import ResultsController
 
@@ -13,6 +14,17 @@ class DrawController():
     def __init__(self):
         self.resultsController = ResultsController()
         self.pointsController = PointsController()
+
+    def draw_next_round(self):
+        tournament = Tournament.instance()
+        pools = self.create_pools(Team.objects.all(), tournament.round)
+        pools = self.remove_empty(pools)
+        pools = self.shuffle_pools(pools)
+        pools = self.balance_pools(pools)
+        debates = self.draw_from_pools(tournament.round+1, pools)
+        tournament.round += 1
+        tournament.save()
+        return debates
 
     def create_pools(self, teams, max_round):
         if not self.resultsController.results_entered_for_round(Tournament.instance().round):
@@ -74,3 +86,21 @@ class DrawController():
 
         return pools
 
+    def draw_from_pools(self, round, pools):
+        debates = []
+        for pool in pools.values():
+            if len(pool) %4 != 0:
+                raise ValueError("Number of teams must be divisible by four")
+
+            num_debates = len(pool) / 4
+
+            for i in range(0, num_debates):
+                debate = Debate(round=round)
+                debate.OG = pool[(i*4)]
+                debate.OO = pool[(i*4)+1]
+                debate.CG = pool[(i*4)+2]
+                debate.CO = pool[(i*4)+3]
+                debate.full_clean()
+                debate.save()
+                debates.append(debate)
+        return debates

@@ -71,3 +71,18 @@ class DrawControllerTestCase(TestCase):
         balanced_pools = self.controller.balance_pools(pools)
         for pool in balanced_pools.values():
             self.assertEqual(0, len(pool) % 4)
+
+    def testDrawDebatesFromPools(self):
+        pools = {
+            1: [Mock(), Mock(), Mock(), Mock()],
+            2: [Mock(), Mock(), Mock(), Mock(), Mock(), Mock(), Mock(), Mock()],
+            3: [Mock(), Mock(), Mock(), Mock()]
+        }
+        debates = self.controller.draw_from_pools(1, pools)
+
+        for debate in debates:
+            self.assertIsNotNone(debate.OG)
+            self.assertIsNotNone(debate.OO)
+            self.assertIsNotNone(debate.CG)
+            self.assertIsNotNone(debate.CO)
+            self.assertEqual(1, debate.round)
