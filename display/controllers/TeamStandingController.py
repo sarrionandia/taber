@@ -25,7 +25,10 @@ class TeamStandingController():
             teams.sort(key= lambda team: (team.total_team_points, team.total_speaker_sum), reverse=True)
             for t in range(0, len(teams)):
                 team = teams[t]
-                row = [t+1, team]
+                if (team.total_speaker_sum == teams[t-1].total_speaker_sum) and (team.total_team_points == teams[t-1].total_team_points):
+                    row = ['--', team]
+                else:
+                    row = [t+1, team]
                 for r in range(1,max_round+1):
                     row.append(self.points_controller.team_points_for_team(team, r))
                 row.append(team.total_speaker_sum)
