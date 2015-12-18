@@ -2,10 +2,8 @@ from django.http import HttpResponse
 from django.template import loader, RequestContext
 from django.views.generic import View
 
-from data.models import Team
+from display.controllers.TeamStandingController import TeamStandingController
 from draw.models import Debate, Tournament
-from results.controllers.PointsController import PointsController
-from results.controllers.ResultsController import ResultsController
 
 
 class DrawTableView(View):
@@ -20,29 +18,16 @@ class DrawTableView(View):
         })
         return HttpResponse(template.render(context))
 
+
 class TeamStandingView(View):
     def get(self, request):
-        rows = []
 
         round = Tournament.instance().round
-        results_controller = ResultsController()
-        points_controller = PointsController()
-        if not results_controller.results_entered_for_round(round):
-            round -= 1
+        team_standing_controller = TeamStandingController()
 
-        teams = list(Team.objects.all())
-        teams.sort(key= lambda team: (team.total_team_points, team.total_speaker_sum), reverse=True)
-        for t in range(0, len(teams)):
-            team = teams[t]
-            row = [t+1, team]
-            for r in range(1,round+1):
-                row.append(points_controller.team_points_for_team(team, r))
-            row.append(team.total_speaker_sum)
-            row.append(team.total_team_points)
-            rows.append(row)
         template = loader.get_template('display/team_standing.html')
         context = RequestContext(request, {
-            'table' : rows,
+            'table' : team_standing_controller.team_standing_table_all_rounds(),
             'max_round' : round,
             'all_rounds' : range(1, round+1)
         })
