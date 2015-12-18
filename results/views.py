@@ -2,9 +2,10 @@ from django.http import HttpResponse, HttpResponseBadRequest, Http404, HttpRespo
 from django.template import loader, RequestContext
 from django.views.generic import View
 
+from data.models import Team
 from draw.models import Debate, Tournament
 from forms import ResultForm
-from results.models import Result
+from results.controllers.PointsController import PointsController
 
 
 class EditResultsView(View):
@@ -54,13 +55,16 @@ class ResultsTableView(View):
         if int(round) < 1 or int(round) > Tournament.instance().round:
             raise Http404
 
+        points_controller = PointsController()
+
         debates = Debate.objects.filter(round=round)
         template = loader.get_template('results/results_table.html')
         context = RequestContext(request, {
             'round' : int(round),
             'debates' : debates,
             'max_round' : Tournament.instance().round,
-            'all_rounds' : range(1, Tournament.instance().round+1)
+            'all_rounds' : range(1, Tournament.instance().round+1),
+            'points' : points_controller.team_points_map_for_round(Tournament.instance().round, Team.objects.all())
 
         })
         return HttpResponse(template.render(context))

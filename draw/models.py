@@ -4,6 +4,7 @@ from django.db import models
 
 import results
 from data.models import Team, Venue, Judge
+from draw.controller.helpers.DebateHelpers import debate_as_strings
 from draw.validators import DebateValidator
 
 
@@ -64,6 +65,10 @@ class Debate(models.Model):
 
     def __str__(self):
         return 'R' + str(self.round) + "<" + self.venue.name + ">"
+
+    @property
+    def as_strings_with_results(self):
+        return debate_as_strings(self)
 
     def clean(self):
         DebateValidator.validate(self, Debate.objects.filter(round=self.round))

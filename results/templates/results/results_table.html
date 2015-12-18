@@ -30,10 +30,14 @@
                     {% endif %}
 
                 </td>
-                <td>{{ d.OG }}</td>
-                <td>{{ d.OO }}</td>
-                <td>{{ d.CG }}</td>
-                <td>{{ d.CO }}</td>
+                {% for position in d.as_strings_with_results %}
+                    <td>
+                        {% if position.1 %}
+                            <span class="badge badge-success">{{ position.1 }}</span>
+                        {% endif %}
+                        {{ position.0 }}
+                    </td>
+                {% endfor %}
             </tr>
         {% endfor %}
     </table>

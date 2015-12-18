@@ -39,3 +39,9 @@ class PointsController():
             return [result.cgsp1, result.cgsp2]
         if debate.CO == team:
             return [result.cosp1, result.cosp2]
+
+    def team_points_map_for_round(self, round, teams):
+        points = {}
+        for team in teams:
+            points.update({team: self.team_points_for_team(team, round)})
+        return points
