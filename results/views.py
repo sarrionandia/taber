@@ -12,8 +12,20 @@ class EditResultsView(View):
 
     def get(self, request, debateid):
         debate = Debate.objects.get(id=debateid)
+        result = debate.result
         template = loader.get_template('results/edit_result.html')
-        form = ResultForm(initial={'debate': debateid})
+        form = ResultForm(initial={
+            'debate': debateid,
+            'ogsp1' : result.ogsp1,
+            'ogsp2' : result.ogsp2,
+            'oosp1' : result.oosp1,
+            'oosp2' : result.oosp2,
+            'cgsp1' : result.cgsp1,
+            'cgsp2' : result.cgsp2,
+            'cosp1' : result.cosp1,
+            'cosp2' : result.cosp2,
+
+        })
         context = RequestContext(request, {
             'form' : form,
             'debate' : debate
