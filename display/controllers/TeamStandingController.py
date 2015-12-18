@@ -14,10 +14,7 @@ class TeamStandingController():
         self.results_controller = ResultsController()
 
     def team_standing_table_all_rounds(self):
-        round = Tournament.instance().round
-        if not self.results_controller.results_entered_for_round(round):
-            round -= 1
-        return self.team_standing_table(round)
+        return self.team_standing_table(self.results_controller.max_round_with_results())
 
     def team_standing_table(self, max_round):
             rows = []

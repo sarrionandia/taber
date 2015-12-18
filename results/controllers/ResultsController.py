@@ -19,3 +19,9 @@ class ResultsController():
         debate = self.debate_controller.debate_for_round(team, round)
         return debate.result
 
+    def max_round_with_results(self):
+        current_round = Tournament.instance().round
+        if self.results_entered_for_round(current_round):
+            return current_round
+        else:
+            return current_round - 1
