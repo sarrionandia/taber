@@ -23,7 +23,12 @@
         {% for d in debates %}
             <tr {% if d.has_result %}class="success"{% endif %}>
                 <td>
-                    <a href="/results/edit/{{ d.id }}/">{{ d.venue }}</a>
+                    {% if round == max_round %}
+                        <a href="/results/edit/{{ d.id }}/">{{ d.venue }}</a>
+                    {% else %}
+                        {{ d.venue }}
+                    {% endif %}
+
                 </td>
                 <td>{{ d.OG }}</td>
                 <td>{{ d.OO }}</td>
