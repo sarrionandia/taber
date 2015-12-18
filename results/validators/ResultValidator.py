@@ -1,9 +1,16 @@
 from django.core.exceptions import ValidationError
 
+from draw.models import Tournament, TournamentStateException
+
+
 def validate(result):
     check_positions_awarded(result)
     check_position_matches_speaks(result)
+    check_round_not_passed(result)
 
+def check_round_not_passed(result):
+    if result.debate.round < Tournament.instance().round:
+        raise TournamentStateException("Can't save a result for a round that has already finished")
 
 def check_positions_awarded(result):
         results = [result.og, result.oo, result.cg, result.co]

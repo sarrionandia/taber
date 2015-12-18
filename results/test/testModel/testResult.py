@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from data.test import generate_objects
-from results.models import Result
+from draw.models import Tournament, TournamentStateException
 
 
 class ResultTestCase(TestCase):
@@ -74,3 +74,11 @@ class ResultTestCase(TestCase):
         self.assertEqual(result.oo, 1)
         self.assertEqual(result.cg, 2)
         self.assertEqual(result.co, 3)
+
+    def testRaiseExceptionIfRoundHasPassed(self):
+        result = generate_objects.valid_result_with_debate()
+        tournament = Tournament.instance()
+        tournament.round = 2
+        tournament.save()
+        with self.assertRaises(TournamentStateException):
+            result.full_clean()
