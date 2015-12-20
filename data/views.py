@@ -124,3 +124,14 @@ class UpdateTeamView(View):
         except ObjectDoesNotExist:
             raise Http404("Team does not exist")
         return HttpResponse("OK")
+
+
+class DeleteJudgeView(View):
+
+    def post(self, request, judgeid):
+        try:
+            judge = Judge.objects.get(id=judgeid)
+            judge.delete()
+        except ObjectDoesNotExist:
+            raise Http404("Judge does not exist")
+        return HttpResponse("OK")

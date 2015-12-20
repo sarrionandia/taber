@@ -63,9 +63,21 @@
 
         <div role="tabpanel" class="tab-pane" id="judges">
             <section class="judges">
-                <ul>{% for j in judges %}
-                    <li>{{ j }}</li>{% endfor %}
-                </ul>
+                {% for i in institutions %}
+                    <h2>{{ i.name }}</h2>
+                    {% for j in i.judges %}
+                        <div class="judge row" id="j_{{ j.id }}">
+                            <span class="name col-sm-6">{{ j.name }}</span>
+                            <span class="action col-sm-6">
+                                <form method="post" id="j_form_{{ j.id }}">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{ j.id }}">
+                                <button type="button" onclick="delete_judge({{ j.id }});" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </span>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
             </section>
         </div>
 

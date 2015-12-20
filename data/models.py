@@ -8,6 +8,11 @@ class Institution(models.Model):
     def teams(self):
         return Team.objects.filter(institution=self)
 
+    @property
+    def judges(self):
+        return Judge.objects.filter(institution=self)
+
+
     def __str__(self):
         return self.name
 

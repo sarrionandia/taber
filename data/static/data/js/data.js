@@ -171,3 +171,18 @@ function create_team(inst_id) {
         }
     });
 }
+
+function delete_judge(judge_id){
+    $.ajax({
+        type: 'POST',
+        url: '/data/judge/' + judge_id + '/delete/',
+        data: $('#j_form_' + judge_id).serialize(),
+        success: function(data) {
+            $('#j_' + judge_id).toggle({effect: "scale", direction: "vertical"});
+        },
+        error: function(request, error) {
+            alert("Couldn't delete judge");
+        }
+
+    });
+}
