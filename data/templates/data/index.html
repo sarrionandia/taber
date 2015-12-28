@@ -65,8 +65,8 @@
             <section class="judges">
                 {% for i in institutions %}
                     <h2>{{ i.name }}</h2>
-                    {% for j in i.judges %}
-                        <div class="judge row" id="j_{{ j.id }}">
+                        <ul data-empty-message="{{ i.name }} has no registered judges" class="judges">{% for j in i.judges %}
+                        <li class="judge row" id="j_{{ j.id }}">
                             <span class="name col-sm-6">{{ j.name }}</span>
                             <span class="action col-sm-6">
                                 <form method="post" id="j_form_{{ j.id }}">
@@ -75,8 +75,8 @@
                                 <button type="button" onclick="delete_judge({{ j.id }});" class="btn btn-sm btn-danger">Delete</button>
                                 </form>
                             </span>
-                        </div>
-                    {% endfor %}
+                        </li>
+                    {% endfor %}</ul>
                 {% endfor %}
             </section>
         </div>

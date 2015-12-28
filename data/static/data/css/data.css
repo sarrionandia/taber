@@ -43,4 +43,13 @@
 
 .judge {
     margin-bottom: 5px;
+    list-style-type: none;
+}
+
+ul.judges:empty::after{
+  content: attr(data-empty-message);
+}
+
+ul.judges {
+    margin-bottom: 25px;
 }
