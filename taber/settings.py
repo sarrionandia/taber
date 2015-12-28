@@ -42,7 +42,8 @@ INSTALLED_APPS = (
     'taber',
     'draw',
     'display',
-    'results'
+    'results',
+    'judging'
 )
 
 MIDDLEWARE_CLASSES = (
