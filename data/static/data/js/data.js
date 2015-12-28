@@ -183,6 +183,27 @@ function delete_judge(judge_id){
         error: function(request, error) {
             alert("Couldn't delete judge");
         }
+    });
+}
+
+function add_judge(inst_id) {
+    var form = $('#j_create_form_' + inst_id);
+    var name = $('#new_judge_name_' + inst_id);
+    if (name.val().length < 1) {
+        return;
+    }
+
+    $.ajax({
+        type: 'POST',
+        url: '/data/judge/',
+        data: form.serialize(),
+        success: function(data) {
+            alert("Success!");
+        },
+        error: function(request, error) {
+            alert("Failure!");
+        }
 
     });
+
 }

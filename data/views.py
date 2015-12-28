@@ -135,3 +135,17 @@ class DeleteJudgeView(View):
         except ObjectDoesNotExist:
             raise Http404("Judge does not exist")
         return HttpResponse("OK")
+
+
+class CreateJudgeView(View):
+
+    def post(self, request):
+        name = request.POST.get('name')
+        try:
+            institution = Institution.objects.get(id=int(request.POST.get('institution')))
+            judge = Judge(name=name, institution=institution)
+            judge.save()
+        except ObjectDoesNotExist:
+            raise Http404("Institution does not exist")
+
+        return HttpResponse("OK")

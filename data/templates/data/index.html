@@ -67,7 +67,7 @@
                     <h2>{{ i.name }}</h2>
                         <ul data-empty-message="{{ i.name }} has no registered judges" class="judges">{% for j in i.judges %}
                         <li class="judge row" id="j_{{ j.id }}">
-                            <span class="name col-sm-6">{{ j.name }}</span>
+                            <span class="judge_name col-sm-6">{{ j.name }}</span>
                             <span class="action col-sm-6">
                                 <form method="post" id="j_form_{{ j.id }}">
                                     {% csrf_token %}
@@ -77,7 +77,26 @@
                             </span>
                         </li>
                     {% endfor %}</ul>
+                    <form id="j_create_form_{{ i.id }}">
+                        {% csrf_token %}
+                        <input type="hidden" name="institution" value="{{ i.id }}">
+                        <div class="row judge_row">
+                            <span class="col-sm-6">
+                                <input  class="form-control judge-form"
+                                        type="text"
+                                        placeholder="Judge Name"
+                                        name="name"
+                                        id="new_judge_name_{{ i.id }}">
+                            </span>
+                            <span class="col-sm-6">
+                                <button class="btn btn-sm btn-success"
+                                        onclick="add_judge({{ i.id }});"
+                                        type="button">Add Judge</button>
+                            </span>
+                        </div>
+                    </form>
                 {% endfor %}
+
             </section>
         </div>
 
