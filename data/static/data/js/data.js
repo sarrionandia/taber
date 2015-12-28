@@ -216,6 +216,7 @@ function add_judge(inst_id) {
                               .addClass('col-sm-6')
                       )
                 );
+            name.val('');
         },
         error: function(request, error) {
             alert("Couldn't add judge");
