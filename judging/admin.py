@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from judging.models import Panel
+
+admin.site.register(Panel)
