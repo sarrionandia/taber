@@ -198,10 +198,27 @@ function add_judge(inst_id) {
         url: '/data/judge/',
         data: form.serialize(),
         success: function(data) {
-            alert("Success!");
+            $('#judge_list_' + inst_id)
+                .append(
+                  $('<li />')
+                      .addClass('row')
+                      .addClass('judge')
+                      .attr('id', 'j_' + data)
+                      .append(
+                          $('<span />')
+                              .addClass('name')
+                              .addClass('col-sm-6')
+                              .append(name.val())
+                      )
+                      .append(
+                          $('<span />')
+                              .addClass('action')
+                              .addClass('col-sm-6')
+                      )
+                );
         },
         error: function(request, error) {
-            alert("Failure!");
+            alert("Couldn't add judge");
         }
 
     });

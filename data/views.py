@@ -148,4 +148,4 @@ class CreateJudgeView(View):
         except ObjectDoesNotExist:
             raise Http404("Institution does not exist")
 
-        return HttpResponse("OK")
+        return HttpResponse(judge.id)

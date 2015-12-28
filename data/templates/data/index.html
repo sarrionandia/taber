@@ -65,7 +65,9 @@
             <section class="judges">
                 {% for i in institutions %}
                     <h2>{{ i.name }}</h2>
-                        <ul data-empty-message="{{ i.name }} has no registered judges" class="judges">{% for j in i.judges %}
+                        <ul data-empty-message="{{ i.name }} has no registered judges"
+                            class="judges"
+                            id="judge_list_{{ i.id }}">{% for j in i.judges %}
                         <li class="judge row" id="j_{{ j.id }}">
                             <span class="judge_name col-sm-6">{{ j.name }}</span>
                             <span class="action col-sm-6">
