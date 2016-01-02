@@ -7,30 +7,25 @@ from judging.models import Panel
 
 class PanelTestCase(TestCase):
 
-    def testAllowsValidPanel(self):
-        judges = [generate_objects.valid_judge(), generate_objects.valid_judge(), generate_objects.valid_judge()]
-        chair = judges[1]
+    def setUp(self):
+        panel = Panel()
         debate = generate_objects.valid_debate()
         debate.save()
-
-        panel = Panel(chair=chair)
         panel.debate = debate
+        judges = [generate_objects.valid_judge(), generate_objects.valid_judge(), generate_objects.valid_judge()]
+        panel.chair = judges[1]
         panel.save()
-
         panel.judges.add(judges[0], judges[1], judges[2])
-
-        panel.full_clean()
         panel.save()
+        self.panel = panel
+
+    def testAllowsValidPanel(self):
+        self.panel.full_clean()
+        self.panel.save()
 
     def testChairNotInPanel(self):
-        judges = [generate_objects.valid_judge(), generate_objects.valid_judge(), generate_objects.valid_judge()]
-        chair = generate_objects.valid_judge()
-        debate = generate_objects.valid_debate()
-        debate.save()
-
-        panel = Panel(chair=chair)
-        panel.debate = debate
-        panel.save()
-        panel.judges.add(judges[0], judges[1], judges[2])
+        panel = self.panel
+        panel.chair = generate_objects.valid_judge()
         with self.assertRaises(TournamentStateException):
             panel.full_clean()
+
