@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 ('oo', models.IntegerField(validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(3)])),
                 ('cg', models.IntegerField(validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(3)])),
                 ('co', models.IntegerField(validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(3)])),
-                ('debate', models.ForeignKey(to='draw.Debate')),
+                ('debate', models.ForeignKey(related_name='results', to='draw.Debate')),
             ],
         ),
     ]

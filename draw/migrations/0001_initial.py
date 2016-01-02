@@ -8,7 +8,7 @@ import django.core.validators
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('data', '0001_initial'),
+        ('data', '__first__'),
     ]
 
     operations = [
@@ -21,6 +21,7 @@ class Migration(migrations.Migration):
                 ('CO', models.ForeignKey(related_name='CO', to='data.Team')),
                 ('OG', models.ForeignKey(related_name='OG', to='data.Team')),
                 ('OO', models.ForeignKey(related_name='OO', to='data.Team')),
+                ('venue', models.ForeignKey(blank=True, to='data.Venue', null=True)),
             ],
         ),
         migrations.CreateModel(
