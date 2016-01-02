@@ -29,3 +29,14 @@ class PanelTestCase(TestCase):
         with self.assertRaises(TournamentStateException):
             panel.full_clean()
 
+    def testJudgeInTwoPanelsForSameRound(self):
+        duplicate_judge = self.panel.judges.all().first()
+        panel = Panel()
+        debate = generate_objects.valid_debate()
+        debate.save()
+        panel.debate = debate
+        panel.chair = duplicate_judge
+        panel.save()
+        panel.judges.add(duplicate_judge)
+        with self.assertRaises(TournamentStateException):
+            panel.full_clean()

@@ -12,3 +12,8 @@ class Panel(models.Model):
     def clean(self):
         if self.chair not in self.judges.all():
             raise TournamentStateException("Chair is not on the judging panel")
+
+        for judge in self.judges.all():
+            for panel in judge.panel_set.all():
+                if panel != self and panel.debate.round == self.debate.round:
+                    raise TournamentStateException("Judge " + str(judge) + " is already on a panel for this round")
