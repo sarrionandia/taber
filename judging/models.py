@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from data.models import Judge
@@ -10,10 +11,9 @@ class Panel(models.Model):
     chair = models.ForeignKey(Judge, related_name='chairing')
 
     def clean(self):
-        if self.chair not in self.judges.all():
-            raise TournamentStateException("Chair is not on the judging panel")
+        for panel in Panel.objects.all():
+            if panel != self and panel.debate == self.debate:
+                raise ValidationError("That debate already has a panel")
 
-        for judge in self.judges.all():
-            for panel in judge.panel_set.all():
-                if panel != self and panel.debate.round == self.debate.round:
-                    raise TournamentStateException("Judge " + str(judge) + " is already on a panel for this round")
+    def __str__(self):
+        return "R" + str(self.debate.round) + " " + str(self.debate.venue)
